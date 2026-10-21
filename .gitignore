@@ -1,0 +1,11 @@
+# Built widget packages from ./scripts/build.sh. Attach them to a release instead.
+*.plasmoid
+
+# Backup and swap files from editors (Kate, KWrite, Vim, Emacs)
+*~
+*.kate-swp
+*.swp
+\#*\#
+
+# Folder view settings Dolphin saves
+.directory

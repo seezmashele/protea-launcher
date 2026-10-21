@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+    http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name=""/>
+    <group name="General">
+        <entry name="icon" type="String">
+            <label>Icon shown on the panel button: an icon name or a file path. Empty uses Protea's own icon.</label>
+            <default></default>
+        </entry>
+        <entry name="searchBarRoundCorners" type="Bool">
+            <label>Whether the search bar has fully rounded ends instead of the theme's corners. Its colours still come from the theme.</label>
+            <default>true</default>
+        </entry>
+        <entry name="searchBarDarkBackground" type="Bool">
+            <label>Whether to draw a dark background (black at 25% opacity) behind the search bar.</label>
+            <default>false</default>
+        </entry>
+        <entry name="columns" type="Int">
+            <label>Number of app grid columns the popup is sized for.</label>
+            <default>6</default>
+            <min>3</min>
+            <max>12</max>
+        </entry>
+        <entry name="rows" type="Int">
+            <label>Number of app grid rows the popup is sized for.</label>
+            <default>5</default>
+            <min>3</min>
+            <max>12</max>
+        </entry>
+        <entry name="gridSize" type="String">
+            <label>Size of the app grid: "compact" (36px icons in 108px tiles), "small" (40px in 112px), "cozy" (44px in 116px), "medium" (48px in 120px) or "large" (56px in 128px).</label>
+            <default>cozy</default>
+        </entry>
+        <entry name="smallerTiles" type="Bool">
+            <label>Whether to use tiles 8px smaller than the size's usual ones: 100px for compact, 104px for small, 108px for cozy, 112px for medium and 120px for large.</label>
+            <default>false</default>
+        </entry>
+        <entry name="hiddenApps" type="StringList">
+            <label>Apps left out of the app grid, by desktop file ID (e.g. "org.kde.dolphin.desktop"). They still show up in search results.</label>
+            <default></default>
+        </entry>
+        <entry name="utilityButtons" type="StringList">
+            <label>Buttons on the right of the utility bar: "settings" opens System Settings and "power" opens the power menu. Session actions (lock-screen, logout, save-session, switch-user, suspend, hibernate, reboot, shutdown) can also be listed to give them buttons of their own.</label>
+            <default>settings,power</default>
+        </entry>
+        <entry name="utilityBarDarkBackground" type="Bool">
+            <label>Whether to draw a dark background (black at 25% opacity) behind the utility bar.</label>
+            <default>false</default>
+        </entry>
+        <entry name="powerMenuActions" type="StringList">
+            <label>Session actions listed in the power menu: lock-screen, logout, save-session, switch-user, suspend, hibernate, reboot, shutdown. Actions the system doesn't support are hidden.</label>
+            <default>lock-screen,logout,switch-user,suspend,hibernate,reboot,shutdown</default>
+        </entry>
+    </group>
+</kcfg>
