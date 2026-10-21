@@ -2,11 +2,11 @@
 
 Every size and gap used in the launcher popup, measured from the running code.
 
-- **Measured:** 2026-10-04, with the app grid sizes and the smaller tiles option, a 12px gap around and between the sections, a single 24px gap at each side of the app grid with the scrollbar inside the right one, scrolling space above and below the tiles, and the popup locked to its content size.
+- **Measured:** 2026-10-04, with the app grid sizes and the smaller tiles option, a 12px gap around and between the sections, a single 24px gap at each side of the app grid with the scrollbar inside the right one, scrolling space above and below the tiles, and the popup locked to its content size. Re-checked 2026-10-21 on Plasma 6.8.0 (Qt 6.12): every value unchanged.
 - **Settings:** the defaults: 6 columns × 5 rows, the **Cozy** size (44px icons in 116px tiles) without smaller tiles, Round search bar corners, no dark backgrounds.
 - **Font:** Noto Sans 10pt (line height 17.7px). Label heights change with the system font. The Kirigami spacing units don't: they're fixed values.
 - **Units:** logical pixels, before display scaling.
-- **Not included:** the frame Plasma draws around the popup: 4px on every side with the Breeze theme. The window on screen is that much larger than the content sizes here.
+- **Not included:** the frame Plasma draws around the popup: 4px on every side with the Breeze theme. The window on screen is that much larger than the content sizes here. In a panel that isn't floating, Plasma also adds 1px between the popup and the panel (to the height for a top or bottom panel, the width for a side panel) for the separator line it draws there, and that pixel ends up in the app grid section: 597 tall instead of 596 under a bottom panel.
 
 ## At a glance
 
@@ -43,7 +43,7 @@ With a bar's dark background on, that bar is 728 wide, from 8 to 736: it reaches
 
 ### Size of the popup
 
-The popup is always exactly its content size, which comes from the columns, rows and tile size. Its minimum and maximum size are both set to that size, so it can't be dragged to another size, and a size Plasma saved from earlier dragging is brought back to it.
+The popup is always exactly its content size, which comes from the columns, rows and tile size. Its minimum and maximum size are both set to that size, so it can't be dragged to another size, and a size Plasma saved from earlier dragging is brought back to it. The one exception is the 1px Plasma adds for its separator line in a panel that isn't floating (see "Not included" above).
 
 It only ends up smaller if Plasma has to shrink it to fit the screen (Plasma caps popups at 95% of the screen's width and height). Then the padding and section spacing stay fixed and the app grid shows as many columns as fit with at least 24 at each side, centred, and scrolls:
 

@@ -221,16 +221,17 @@ Protea was built on Plasma 6.7.5 (Fedora 44) and now runs on 6.8.0 (Arch, Qt 6.1
 **Done when:** an app hidden before the update (e.g. `qvidcap.desktop`) is gone from the grid again; Hide and Unhide work from the grid and from search results; the Hidden Apps page lists hidden apps by name, and only uninstalled ones as "Not installed".
 
 ### Phase 10: Check everything on 6.8
-Things only a running session shows. Size checks use the default settings in `plasmoidviewer` (it keeps its own config); the rest also gets tried in the real panel after `./scripts/install.sh`.
-- [ ] Popup size: 744 × 710 at the defaults, 4 less for each dark band, and it can't be dragged to another size. Other sizes, columns and rows still fit
-- [ ] The scrollbar's separator line stays hidden with Breeze
-- [ ] Keyboard: typing goes to search; arrows, Home/End, PgUp/PgDn; Tab order; Enter launches; Esc clears, then closes. This also covers the two items still unticked in phases 2 and 3 (launch and close; Enter, Down, Up and Esc from the search box): tick them if they work
+Things only a running session shows. Most were checked offscreen: the real popup (`FullRepresentation.qml` and everything under it) loaded with the installed Plasma 6.8 modules, a stand-in `Plasmoid` object holding `main.xml`'s defaults, and KDE's platform theme so fonts match the desktop (Noto Sans 10pt), driven by Qt's test runner (in a small build with `QApplication`, as Plasma's menus are `QMenu`s). None of it is kept in the repo. Then the build was installed with `./scripts/install.sh` and opened in the real panel. What's left needs clicking in the real panel.
+- [x] Popup size: 744 × 710 at the defaults, 4 less for each dark band (bands reach the popup's edges), and the minimum and maximum sizes are both the content size, so it can't be dragged to another size. All 10 size combinations match DIMENSIONS.md, as do 3 × 3 (396 × 478) and 12 × 4 (1440 × 594). In the real panel, your settings (6 × 4, Cozy, smaller tiles) give 696 wide as designed, and 1 px taller than the content; see the DIMENSIONS.md item below
+- [x] The scrollbar's separator line stays hidden with Breeze: with Protea's code taken out, Breeze draws it at the slot's inner edge (x 726 of the content); with it, that column matches the background. The handle sits at 732–738 as documented. Protea Dark has no separator to hide
+- [x] Keyboard (7 tests, all passing): the grid has focus on open; Left/Right stop at the row's ends; Down stops at the last row; Home/End go to the row's start and end, with Ctrl to the first and last app; PgDn/PgUp move 5 rows; Up from the top row goes to search and Down comes back; typing goes into search ("kat" finds Kate) and Down moves into the results; Esc clears the search and returns to the grid, then closes; "No matches" shows for nonsense; Tab goes search → grid → avatar → System Settings → Power → search, Shift+Tab goes back, and the grid highlight dims while a button has focus; reopening clears the search and starts at the first app, scrolled to the top
+- [ ] Enter and clicking launch the app and close the popup. Not automated, as it launches real apps. When they work, tick phase 2's "Clicking launches…" and phase 3's "Enter launches…" (the rest of both items passed above)
 - [ ] Right-click menus: tiles (app actions, Add to Desktop, Pin to Task Manager), free space (Configure Launcher), the panel icon (Configure Launcher, Show Alternatives…); an auto-hiding panel stays shown while the panel icon's menu is open
-- [ ] The Meta key opens and closes the popup
+- [x] The launcher shortcut opens and closes the popup in the real panel ("Activate Application Launcher", invoked over D-Bus; it's what the Meta key triggers)
 - [ ] Utility bar: the avatar opens Users, the gear opens System Settings, and the power menu lists the supported actions (Log Out, Restart and Shut Down show Plasma's confirmation first)
 - [ ] Settings dialog: every setting applies, the icon picker works, and the Hidden Apps page Unhides
-- [ ] `journalctl --user -f -t plasmashell` shows no warnings from Protea's files while doing all of the above
-- [ ] DIMENSIONS.md updated if anything measures differently (it was measured on 6.7 with Noto Sans 10pt)
+- [ ] `journalctl --user -f -t plasmashell` shows no warnings from Protea's files while doing all of the above. So far none: plasmashell loading the new build and the popup opening logged nothing from Protea
+- [x] DIMENSIONS.md: every size matches on 6.8. One thing it didn't say, unchanged since 6.7: in a panel that isn't floating, Plasma makes the popup 1 px taller (wider beside a side panel) for the separator line it draws between the popup and the panel, and that pixel ends up in Protea's app grid section (597 tall instead of 596). Protea Dark hides that line. Added under "Not included" and "Size of the popup"
 
 **Done when:** every item works, and anything that didn't is fixed or added here as its own item.
 
