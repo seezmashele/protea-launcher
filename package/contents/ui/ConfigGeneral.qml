@@ -23,7 +23,7 @@ KCM.SimpleKCM {
     property alias cfg_columns: columns.value
     property alias cfg_rows: rows.value
     property string cfg_gridSize
-    property alias cfg_smallerTiles: smallerTiles.checked
+    property alias cfg_largerTiles: largerTiles.checked
 
     // Plasma also passes each setting's default; these give it somewhere to go.
     property string cfg_iconDefault
@@ -32,7 +32,7 @@ KCM.SimpleKCM {
     property int cfg_columnsDefault
     property int cfg_rowsDefault
     property string cfg_gridSizeDefault
-    property bool cfg_smallerTilesDefault
+    property bool cfg_largerTilesDefault
 
     // Set on the Utility Bar and Hidden Apps pages; Plasma hands every setting to every page.
     property var cfg_utilityButtons
@@ -170,8 +170,8 @@ KCM.SimpleKCM {
         }
 
         QQC2.CheckBox {
-            id: smallerTiles
-            text: i18nc("@option:check", "Use smaller tiles")
+            id: largerTiles
+            text: i18nc("@option:check", "Use larger tiles")
         }
     }
 }

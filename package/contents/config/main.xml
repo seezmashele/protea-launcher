@@ -33,8 +33,8 @@
             <label>Size of the app grid: "compact" (36px icons in 108px tiles), "small" (40px in 112px), "cozy" (44px in 116px), "medium" (48px in 120px) or "large" (56px in 128px).</label>
             <default>cozy</default>
         </entry>
-        <entry name="smallerTiles" type="Bool">
-            <label>Whether to use tiles 8px smaller than the size's usual ones: 100px for compact, 104px for small, 108px for cozy, 112px for medium and 120px for large.</label>
+        <entry name="largerTiles" type="Bool">
+            <label>Whether to use tiles 8px larger than the size's usual ones: 108px for compact, 112px for small, 116px for cozy, 120px for medium and 128px for large.</label>
             <default>false</default>
         </entry>
         <entry name="hiddenApps" type="StringList">

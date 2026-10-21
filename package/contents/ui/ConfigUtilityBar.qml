@@ -35,8 +35,8 @@ KCM.SimpleKCM {
     property var cfg_rowsDefault
     property var cfg_gridSize
     property var cfg_gridSizeDefault
-    property var cfg_smallerTiles
-    property var cfg_smallerTilesDefault
+    property var cfg_largerTiles
+    property var cfg_largerTilesDefault
     property var cfg_hiddenApps
     property var cfg_hiddenAppsDefault
 

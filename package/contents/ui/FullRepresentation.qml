@@ -86,14 +86,14 @@ T.Control {
     // Apps left out of the grid (they still show up in search), by desktop file ID.
     readonly property list<string> hiddenApps: Plasmoid.configuration.hiddenApps
 
-    // Icon size, tile size and smaller tile size for each app grid size (the gridSize
-    // setting). The smallerTiles setting picks the smaller tile.
+    // Icon size, tile size and larger tile size for each app grid size (the gridSize
+    // setting). The largerTiles setting picks the larger tile.
     readonly property var gridSizes: ({
-        compact: { iconSize: 36, tileSize: 108, smallerTileSize: 100 },
-        small: { iconSize: 40, tileSize: 112, smallerTileSize: 104 },
-        cozy: { iconSize: 44, tileSize: 116, smallerTileSize: 108 },
-        medium: { iconSize: 48, tileSize: 120, smallerTileSize: 112 },
-        large: { iconSize: 56, tileSize: 128, smallerTileSize: 120 },
+        compact: { iconSize: 36, tileSize: 100, largerTileSize: 108 },
+        small: { iconSize: 40, tileSize: 104, largerTileSize: 112 },
+        cozy: { iconSize: 44, tileSize: 108, largerTileSize: 116 },
+        medium: { iconSize: 48, tileSize: 112, largerTileSize: 120 },
+        large: { iconSize: 56, tileSize: 120, largerTileSize: 128 },
     })
     readonly property var gridSize: gridSizes[Plasmoid.configuration.gridSize] ?? gridSizes.cozy
 
@@ -300,7 +300,7 @@ T.Control {
             columns: Plasmoid.configuration.columns
             rows: Plasmoid.configuration.rows
             iconSize: root.gridSize.iconSize
-            tileSize: Plasmoid.configuration.smallerTiles ? root.gridSize.smallerTileSize : root.gridSize.tileSize
+            tileSize: Plasmoid.configuration.largerTiles ? root.gridSize.largerTileSize : root.gridSize.tileSize
             // Enter in the search box launches the selected tile too.
             highlightActive: activeFocus || searchBar.activeFocus
             hiddenApps: root.hiddenApps

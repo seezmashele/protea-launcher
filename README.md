@@ -67,7 +67,7 @@ The settings are on three pages: **General** (panel icon, appearance and the app
 | Search bar corners | Round (fully rounded ends, filled with the text colour at 10%); or Default, the theme's own search field |
 | Columns × rows | 6 × 4 (3 to 12 each); the popup sizes itself to fit |
 | Size | Cozy; also Compact, Small, Medium and Large. Each sets the icon size and its tile size |
-| Use smaller tiles | Off; tick it for tiles 8 px smaller at whichever size is chosen |
+| Use larger tiles | Off; tick it for tiles 8 px larger at whichever size is chosen |
 | Buttons on the utility bar | System Settings and the power menu; any session action can also get its own button |
 | Power menu items | Every session action the system supports |
 | Hidden apps | None. The **Hidden Apps** page lists them, each with **Unhide** |

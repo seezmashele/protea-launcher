@@ -181,7 +181,7 @@ Each phase ends with something that can be opened and checked before moving on.
 **Done when:** right-clicking any tile shows that app's actions and they work.
 
 ### Phase 7: Settings page and packaging
-- [x] `ConfigGeneral.qml`: panel icon picker, columns, rows, icon size, tile size, utility bar buttons and power menu items; later also optional dark backgrounds behind the search bar and utility bar (since combined into one setting), round search bar corners, and named sizes (Compact, Small, Cozy, Medium, Large) with a Use smaller tiles option in place of the number boxes
+- [x] `ConfigGeneral.qml`: panel icon picker, columns, rows, icon size, tile size, utility bar buttons and power menu items; later also optional dark backgrounds behind the search bar and utility bar (since combined into one setting), round search bar corners, and named sizes (Compact, Small, Cozy, Medium, Large) with a Use smaller tiles option in place of the number boxes (since turned around into Use larger tiles)
 - [x] Custom protea panel icon in `icons/protea.svg` (monochrome, follows the panel's text colour; also the icon in Add Widgets)
 - [x] `scripts/build.sh`: creates `protea-launcher-<version>.plasmoid`
 - [x] Install, usage and settings instructions in `README.md`
@@ -250,6 +250,8 @@ Things only a running session shows. Most were checked offscreen: the real popup
 - [x] One setting for both dark bands: `headerFooterDarkBackground` ("Header and footer: Dark background", just under the panel icon in the settings) replaces `searchBarDarkBackground` and `utilityBarDarkBackground`. A popup that had only one band turns it off after updating, until the new box is ticked. Checked offscreen: off is 744 × 710, on is 744 × 702 with both bands, as before with both on
 - [x] Settings rearranged over three pages. General: the panel icon, an Appearance section (Header and footer, Search bar corners) and the App Grid section, with columns × rows on one row ("Grid: [6] columns × [5] rows"). Utility Bar (`ConfigUtilityBar.qml`, new): the System Settings and Power menu buttons, then each session action once in a table with a Button column and an In power menu column, greyed out while the power menu button is off. Hidden Apps unchanged. No setting changed, so saved settings carry over. Checked offscreen: both pages load, and ticking boxes in either column saves the right list
 - [x] Rows picker on its own line under the columns picker ("Grid: [6] columns", then "[4] rows"), and 4 rows by default instead of 5: a popup that never had its rows set is 116 shorter, 744 × 594 at the other defaults
+- [x] Tiles: each size's smaller tile is now its default tile (Compact 100, Small 104, Cozy 108, Medium 112, Large 120), and its old default is the larger tile (108 to 128), picked with **Use larger tiles** (`largerTiles`, off by default) in place of Use smaller tiles (`smallerTiles`). No pixel sizes changed, only which is the default; a popup that never had smaller tiles ticked gets tiles 8 smaller until Use larger tiles is ticked. The default popup is now 696 × 562
+- [x] DIMENSIONS.md re-measured at the new defaults (6 × 4, Cozy, 108 tiles) on Plasma 6.8.0, offscreen with KDE's font settings: every value in it, all 10 size combinations, the squeezed 500 × 450 popup (now 4 columns, 34 at each side) and the Kirigami units
 
 ## Later (out of scope)
 
