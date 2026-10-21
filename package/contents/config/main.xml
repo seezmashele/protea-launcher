@@ -10,7 +10,7 @@
             <default></default>
         </entry>
         <entry name="searchBarRoundCorners" type="Bool">
-            <label>Whether the search bar has fully rounded ends instead of the theme's corners. Its colours still come from the theme.</label>
+            <label>Whether the search bar has fully rounded ends instead of the theme's corners. Round fills it with the text colour at 10%, with no outline at rest and the colour scheme's hover and focus colours as its outline.</label>
             <default>true</default>
         </entry>
         <entry name="searchBarDarkBackground" type="Bool">

@@ -62,7 +62,7 @@ Right-click any free space in the popup and choose **Configure Launcher**, the o
 |---|---|
 | Panel icon | Protea's own icon; pick any icon or reset back to it |
 | Search bar background | Off; tick it for a dark band (black at 25% opacity) behind the search bar, running to the popup's edges |
-| Search bar corners | Round (fully rounded ends in the theme's colours); or Default, the theme's corners |
+| Search bar corners | Round (fully rounded ends, filled with the text colour at 10%); or Default, the theme's own search field |
 | Columns × rows | 6 × 5 (3 to 12 each); the popup sizes itself to fit |
 | Size | Cozy; also Compact, Small, Medium and Large. Each sets the icon size and its tile size |
 | Use smaller tiles | Off; tick it for tiles 8 px smaller at whichever size is chosen |

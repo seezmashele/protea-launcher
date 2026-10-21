@@ -10,8 +10,8 @@ PlasmaExtras.SearchField {
     id: root
 
     // Fully rounded ends instead of the theme's corners. The theme draws the field from
-    // an image with its corners built in, so in that case it's drawn here instead, with
-    // the colours the theme image uses: view background, frame, hover and focus.
+    // an image with its corners built in, so in that case it's drawn here instead: filled
+    // with the text colour at 10%, outlined only on hover and focus.
     property bool roundCorners: false
 
     // Down arrow: move into the grid below.
@@ -33,26 +33,15 @@ PlasmaExtras.SearchField {
     }
 
     Rectangle {
-        // The theme's frame colour: the background mixed towards the text colour by the
-        // frame contrast, a plain RGB mix like the theme image's.
-        readonly property color frameColor: {
-            const background = Kirigami.Theme.backgroundColor
-            const text = Kirigami.Theme.textColor
-            const contrast = Kirigami.Theme.frameContrast
-            return Qt.rgba(background.r + (text.r - background.r) * contrast,
-                           background.g + (text.g - background.g) * contrast,
-                           background.b + (text.b - background.b) * contrast, 1)
-        }
-
         visible: root.roundCorners
         anchors.fill: parent
         z: -1
 
         radius: height / 2
-        color: Kirigami.Theme.backgroundColor
-        border.width: 1
-        border.color: root.activeFocus ? Kirigami.Theme.focusColor
-            : root.hovered ? Kirigami.Theme.hoverColor
-            : frameColor
+        // A shade lighter than what's behind it in a dark colour scheme, darker in a light one.
+        color: Qt.alpha(Kirigami.Theme.textColor, 0.1)
+        // No outline at rest, as Protea Dark draws its own fields.
+        border.width: root.activeFocus || root.hovered ? 1 : 0
+        border.color: root.activeFocus ? Kirigami.Theme.focusColor : Kirigami.Theme.hoverColor
     }
 }
