@@ -28,7 +28,7 @@ A simple grid-style app launcher for KDE Plasma 6 that replaces the default Appl
 
 ### App grid (middle)
 - All installed apps in one A–Z list (no favorites, no categories).
-- Fixed size of 6 columns × 5 rows by default (configurable). The popup sizes itself to fit the grid.
+- Fixed size of 6 columns × 4 rows by default (configurable; it was 5 rows until the settings were rearranged). The popup sizes itself to fit the grid.
 - Each tile is an icon plus a label of up to two lines.
 
 ### Utility bar (bottom)
@@ -249,6 +249,7 @@ Things only a running session shows. Most were checked offscreen: the real popup
 - [x] The round search bar is filled with the text colour at 10%, as Protea Dark fills its own fields (it was the view background, darker than the popup), with no outline at rest, the hover colour (the accent) at 50% as its outline on hover, and the focus colour while it has focus
 - [x] One setting for both dark bands: `headerFooterDarkBackground` ("Header and footer: Dark background", just under the panel icon in the settings) replaces `searchBarDarkBackground` and `utilityBarDarkBackground`. A popup that had only one band turns it off after updating, until the new box is ticked. Checked offscreen: off is 744 × 710, on is 744 × 702 with both bands, as before with both on
 - [x] Settings rearranged over three pages. General: the panel icon, an Appearance section (Header and footer, Search bar corners) and the App Grid section, with columns × rows on one row ("Grid: [6] columns × [5] rows"). Utility Bar (`ConfigUtilityBar.qml`, new): the System Settings and Power menu buttons, then each session action once in a table with a Button column and an In power menu column, greyed out while the power menu button is off. Hidden Apps unchanged. No setting changed, so saved settings carry over. Checked offscreen: both pages load, and ticking boxes in either column saves the right list
+- [x] Rows picker on its own line under the columns picker ("Grid: [6] columns", then "[4] rows"), and 4 rows by default instead of 5: a popup that never had its rows set is 116 shorter, 744 × 594 at the other defaults
 
 ## Later (out of scope)
 

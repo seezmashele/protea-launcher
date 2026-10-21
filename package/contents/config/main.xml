@@ -25,7 +25,7 @@
         </entry>
         <entry name="rows" type="Int">
             <label>Number of app grid rows the popup is sized for.</label>
-            <default>5</default>
+            <default>4</default>
             <min>3</min>
             <max>12</max>
         </entry>

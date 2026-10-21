@@ -65,7 +65,7 @@ The settings are on three pages: **General** (panel icon, appearance and the app
 | Panel icon | Protea's own icon; pick any icon or reset back to it |
 | Header and footer background | Off; tick it for dark bands (black at 25% opacity) behind the search bar at the top and the utility bar at the bottom, running to the popup's edges |
 | Search bar corners | Round (fully rounded ends, filled with the text colour at 10%); or Default, the theme's own search field |
-| Columns × rows | 6 × 5 (3 to 12 each); the popup sizes itself to fit |
+| Columns × rows | 6 × 4 (3 to 12 each); the popup sizes itself to fit |
 | Size | Cozy; also Compact, Small, Medium and Large. Each sets the icon size and its tile size |
 | Use smaller tiles | Off; tick it for tiles 8 px smaller at whichever size is chosen |
 | Buttons on the utility bar | System Settings and the power menu; any session action can also get its own button |

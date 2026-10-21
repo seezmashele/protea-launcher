@@ -130,7 +130,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18nc("@title:group", "App Grid")
         }
 
-        // Columns × rows, read as one: "6 columns × 5 rows".
+        // The grid's columns, with its rows on the line below: "6 columns", "4 rows".
         RowLayout {
             Kirigami.FormData.label: i18nc("@label", "Grid:")
             spacing: Kirigami.Units.smallSpacing
@@ -142,8 +142,13 @@ KCM.SimpleKCM {
                 Accessible.name: i18nc("@label:spinbox", "Columns")
             }
             QQC2.Label {
-                text: i18nc("@label:spinbox between the columns and rows boxes, as in '6 columns × 5 rows'", "columns ×")
+                text: i18nc("@label:spinbox after the columns box, as in '6 columns'", "columns")
             }
+        }
+
+        RowLayout {
+            spacing: Kirigami.Units.smallSpacing
+
             QQC2.SpinBox {
                 id: rows
                 from: 3
@@ -151,7 +156,7 @@ KCM.SimpleKCM {
                 Accessible.name: i18nc("@label:spinbox", "Rows")
             }
             QQC2.Label {
-                text: i18nc("@label:spinbox after the rows box, as in '6 columns × 5 rows'", "rows")
+                text: i18nc("@label:spinbox after the rows box, as in '4 rows'", "rows")
             }
         }
 

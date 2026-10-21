@@ -3,7 +3,7 @@
 Every size and gap used in the launcher popup, measured from the running code.
 
 - **Measured:** 2026-10-04, with the app grid sizes and the smaller tiles option, a 12px gap around and between the sections, a single 24px gap at each side of the app grid with the scrollbar inside the right one, scrolling space above and below the tiles, and the popup locked to its content size. Re-checked 2026-10-21 on Plasma 6.8.0 (Qt 6.12): every value unchanged.
-- **Settings:** the defaults: 6 columns × 5 rows, the **Cozy** size (44px icons in 116px tiles) without smaller tiles, Round search bar corners, no dark backgrounds.
+- **Settings:** 6 columns × 5 rows, one more row than the default 4 (each row adds 116 to the height of the grid section and everything below it moves down by as much; at 4 rows the popup is 744 × 594), and otherwise the defaults: the **Cozy** size (44px icons in 116px tiles) without smaller tiles, Round search bar corners, no dark backgrounds.
 - **Font:** Noto Sans 10pt (line height 17.7px). Label heights change with the system font. The Kirigami spacing units don't: they're fixed values.
 - **Units:** logical pixels, before display scaling.
 - **Not included:** the frame Plasma draws around the popup: 4px on every side with the Breeze theme. The window on screen is that much larger than the content sizes here. In a panel that isn't floating, Plasma also adds 1px between the popup and the panel (to the height for a top or bottom panel, the width for a side panel) for the separator line it draws there, and that pixel ends up in the app grid section: 597 tall instead of 596 under a bottom panel.
