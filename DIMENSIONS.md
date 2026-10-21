@@ -113,7 +113,7 @@ Content needs 8 + 44 + 4 + 36 + 8 = 100, so the tile is its set size: max(108, 1
 | Position | x 12, y 514 (x 8, y 510 with the dark header and footer) | Everything above it plus section spacing |
 | Gap on every side | 12 | Section spacing above, padding on the other three sides; with the dark background, to the band's edges on all four sides |
 | Gap between buttons | 8 | `Kirigami.Units.largeSpacing` |
-| Avatar | 32 × 32 circle, at the left edge, vertically centered (x 12, y 516) | `Kirigami.Units.iconSizes.medium` |
+| Avatar | 32 × 32, at the left edge, vertically centered (x 12, y 516): a 30 × 30 circle inside 1 of padding, which holds the 1px focus ring. Without a profile picture the circle is filled with the text colour at 10% (as the search bar) with no outline, and shows the name's first letter, 11px | `Kirigami.Units.iconSizes.medium`; [utility/UserAvatar.qml](package/contents/ui/utility/UserAvatar.qml) |
 | Buttons | 36 × 36 each (System Settings at x 604, Power at x 648), at the right edge | `Kirigami.Units.gridUnit × 2`; fixed, so the target is bigger than the icon |
 | Button icon | 16 × 16, monochrome, centered | `Kirigami.Units.iconSizes.small`; `-symbolic` icon names |
 | Button group | 80 wide (2 buttons, 1 gap of 8) | 2 × 36 + 8 |

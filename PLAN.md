@@ -32,7 +32,7 @@ A simple grid-style app launcher for KDE Plasma 6 that replaces the default Appl
 - Each tile is an icon plus a label of up to two lines.
 
 ### Utility bar (bottom)
-- **Left:** a circular user avatar (`KirigamiComponents.AvatarButton`). The picture and name come from `KCoreAddons.KUser`. Hovering shows the user's name; clicking opens the Users settings page (`kcm_users`). It shows initials when no profile picture is set.
+- **Left:** a circular user avatar (Protea's own `UserAvatar.qml`; it started as `KirigamiComponents.AvatarButton`). The picture and name come from `KCoreAddons.KUser`. Hovering shows the user's name; clicking opens the Users settings page (`kcm_users`). With no profile picture set it shows the first letter of the name, in the text colour, on a circle filled like the search bar (the text colour at 10%) with no outline.
 - **Right:** icon-only buttons, each with a hover tooltip: System Settings, and a Power button that opens a menu with the session actions below (changed after phase 5; they started as separate buttons):
 
 | Item | Where | Icon | Action |
@@ -77,7 +77,7 @@ protea-launcher/
 │           │   └── VisibleAppsModel.qml # the A–Z list minus hidden apps
 │           ├── utility/
 │           │   ├── UtilityBar.qml    # avatar left, buttons right
-│           │   ├── UserAvatar.qml    # circular avatar button
+│           │   ├── UserAvatar.qml    # circular avatar button: picture, or first letter
 │           │   └── UtilityButton.qml # icon-only button with tooltip
 │           └── code/
 │               └── appid.js          # an app's desktop file ID from Kicker's favoriteId
@@ -252,6 +252,7 @@ Things only a running session shows. Most were checked offscreen: the real popup
 - [x] Rows picker on its own line under the columns picker ("Grid: [6] columns", then "[4] rows"), and 4 rows by default instead of 5: a popup that never had its rows set is 116 shorter, 744 × 594 at the other defaults
 - [x] Tiles: each size's smaller tile is now its default tile (Compact 100, Small 104, Cozy 108, Medium 112, Large 120), and its old default is the larger tile (108 to 128), picked with **Use larger tiles** (`largerTiles`, off by default) in place of Use smaller tiles (`smallerTiles`). No pixel sizes changed, only which is the default; a popup that never had smaller tiles ticked gets tiles 8 smaller until Use larger tiles is ticked. The default popup is now 696 × 562
 - [x] DIMENSIONS.md re-measured at the new defaults (6 × 4, Cozy, 108 tiles) on Plasma 6.8.0, offscreen with KDE's font settings: every value in it, all 10 size combinations, the squeezed 500 × 450 popup (now 4 columns, 34 at each side) and the Kirigami units
+- [x] Avatar: Protea's own button in place of Kirigami Addons' `AvatarButton`, whose circle has a 1.25px ring and a tint in a colour made from the name, with the initials in that colour, and nothing to turn them off. Without a profile picture it's the first letter of the name in the text colour on a circle filled like the search bar, with no outline; a picture is cropped to the circle as before (rounding needs hardware rendering, as with Kirigami Addons). Keyboard focus or pressing draws a 1px focus-colour ring around it (a filled circle behind, as Kirigami Addons draws it, would show through the see-through fill). Checked offscreen (letter, focus ring), in a real window (picture), and with the keyboard tests (Tab order)
 
 ## Later (out of scope)
 
