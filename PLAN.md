@@ -4,7 +4,7 @@ A simple grid-style app launcher for KDE Plasma 6 that replaces the default Appl
 
 - **Name:** Protea Launcher
 - **Widget ID:** `dev.protea.launcher`
-- **Target:** Plasma 6.7 (developed on 6.7.5, Fedora 44)
+- **Target:** Plasma 6.8 (built on 6.7.5 on Fedora 44; updated on 6.8.0 on Arch). 6.7 should still work
 - **Type:** QML-only plasmoid (no C++, no CMake), installed with `kpackagetool6`
 
 ## Layout
@@ -112,7 +112,7 @@ Kickoff's QML is compiled into `org.kde.plasma.kickoff.so`, but its data layer i
 
 ## Reference: Kickoff's grid logic
 
-Source: [plasma-desktop v6.7.5, `applets/kickoff`](https://invent.kde.org/plasma/plasma-desktop/-/tree/v6.7.5/applets/kickoff). The files that matter are `KickoffGridView.qml`, `KickoffGridDelegate.qml` and `AbstractKickoffItemDelegate.qml`.
+Source: [plasma-desktop v6.8.0, `applets/kickoff`](https://invent.kde.org/plasma/plasma-desktop/-/tree/v6.8.0/applets/kickoff) (first written against v6.7.5; what's below hasn't changed since). The files that matter are `KickoffGridView.qml`, `KickoffGridDelegate.qml` and `AbstractKickoffItemDelegate.qml`.
 
 - **Square cells:** the cell size comes from measuring a hidden tile (48px icon, two lines of label, padding), so it follows the font and theme.
 - **Columns:** `columns = floor((width − 2 × gap) / cellWidth)`. The grid view is that many whole cells plus a 24px gap at each side (its own margins, as in Kickoff), centred; the scrollbar sits inside the right gap, so the tiles stay centred whether or not it shows.
@@ -141,7 +141,7 @@ Each phase ends with something that can be opened and checked before moving on.
 - [x] All installed apps in one A–Z list
 - [x] `grid/AppGrid.qml`: square cells, column snapping and centering, scrollbar, popup sized to columns × rows
 - [x] `grid/AppTile.qml`: icon plus a two-line label, tooltip when the name is cut off, highlight follows the mouse
-- [ ] Clicking launches the app and closes the popup; reopening starts at the top
+- [x] Clicking launches the app and closes the popup; reopening starts at the top
 - [x] Settings: columns (6), rows (5), icon size
 
 **Done when:** every app appears A–Z, clicking one launches it, and the popup is 6 × 5.
@@ -150,7 +150,7 @@ Each phase ends with something that can be opened and checked before moving on.
 - [x] `search/SearchBar.qml` (focused on open at first; later changed so the grid takes focus and the search bar only becomes active once you start typing)
 - [x] Search limited to apps and settings pages; the grid shows results while there's text
 - [x] Typing anywhere goes into the search box
-- [ ] Enter launches the first result; Down moves into the grid; Up from the top row comes back; Esc clears, then closes
+- [x] Enter launches the first result; Down moves into the grid; Up from the top row comes back; Esc clears, then closes
 - [x] "No matches" message; the search clears when the popup closes
 
 **Done when:** opening it, typing "fire" and pressing Enter launches Firefox.
@@ -225,21 +225,22 @@ Things only a running session shows. Most were checked offscreen: the real popup
 - [x] Popup size: 744 × 710 at the defaults, 4 less for each dark band (bands reach the popup's edges), and the minimum and maximum sizes are both the content size, so it can't be dragged to another size. All 10 size combinations match DIMENSIONS.md, as do 3 × 3 (396 × 478) and 12 × 4 (1440 × 594). In the real panel, your settings (6 × 4, Cozy, smaller tiles) give 696 wide as designed, and 1 px taller than the content; see the DIMENSIONS.md item below
 - [x] The scrollbar's separator line stays hidden with Breeze: with Protea's code taken out, Breeze draws it at the slot's inner edge (x 726 of the content); with it, that column matches the background. The handle sits at 732–738 as documented. Protea Dark has no separator to hide
 - [x] Keyboard (7 tests, all passing): the grid has focus on open; Left/Right stop at the row's ends; Down stops at the last row; Home/End go to the row's start and end, with Ctrl to the first and last app; PgDn/PgUp move 5 rows; Up from the top row goes to search and Down comes back; typing goes into search ("kat" finds Kate) and Down moves into the results; Esc clears the search and returns to the grid, then closes; "No matches" shows for nonsense; Tab goes search → grid → avatar → System Settings → Power → search, Shift+Tab goes back, and the grid highlight dims while a button has focus; reopening clears the search and starts at the first app, scrolled to the top
-- [ ] Enter and clicking launch the app and close the popup. Not automated, as it launches real apps. When they work, tick phase 2's "Clicking launches…" and phase 3's "Enter launches…" (the rest of both items passed above)
-- [ ] Right-click menus: tiles (app actions, Add to Desktop, Pin to Task Manager), free space (Configure Launcher), the panel icon (Configure Launcher, Show Alternatives…); an auto-hiding panel stays shown while the panel icon's menu is open
+- [x] Enter and clicking launch the app and close the popup (checked by hand in the real panel; not automated, as it launches real apps). Phase 2's "Clicking launches…" and phase 3's "Enter launches…" are ticked now too
+- [x] Right-click menus: tiles (app actions, Add to Desktop, Pin to Task Manager), free space (Configure Launcher), the panel icon (Configure Launcher, Show Alternatives…), checked by hand. Not tried: an auto-hiding panel staying shown while the panel icon's menu is open, as this panel doesn't auto-hide
 - [x] The launcher shortcut opens and closes the popup in the real panel ("Activate Application Launcher", invoked over D-Bus; it's what the Meta key triggers)
-- [ ] Utility bar: the avatar opens Users, the gear opens System Settings, and the power menu lists the supported actions (Log Out, Restart and Shut Down show Plasma's confirmation first)
-- [ ] Settings dialog: every setting applies, the icon picker works, and the Hidden Apps page Unhides
-- [ ] `journalctl --user -f -t plasmashell` shows no warnings from Protea's files while doing all of the above. So far none: plasmashell loading the new build and the popup opening logged nothing from Protea
+- [x] Utility bar: the avatar opens Users, the gear opens System Settings, and the power menu lists the supported actions (Log Out, Restart and Shut Down show Plasma's confirmation first), checked by hand
+- [x] Settings dialog: every setting applies, the icon picker works, and the Hidden Apps page Unhides, checked by hand
+- [x] `journalctl --user -f -t plasmashell` shows no warnings from Protea's files while doing all of the above: nothing from Protea from the install through the hand checks
 - [x] DIMENSIONS.md: every size matches on 6.8. One thing it didn't say, unchanged since 6.7: in a panel that isn't floating, Plasma makes the popup 1 px taller (wider beside a side panel) for the separator line it draws between the popup and the panel, and that pixel ends up in Protea's app grid section (597 tall instead of 596). Protea Dark hides that line. Added under "Not included" and "Size of the popup"
 
 **Done when:** every item works, and anything that didn't is fixed or added here as its own item.
 
 ### Phase 11: Docs and release
-- [ ] This file: Target is Plasma 6.8 (built on 6.7.5, Fedora 44; updated on 6.8.0, Arch); the Kickoff reference points at v6.8.0; Dev setup uses `pacman` and the lint script
-- [ ] README: Requirements say Plasma 6.8 (6.7 should also work); Development gives `plasma-sdk` for Arch and Fedora and lists `./scripts/lint.sh`
-- [ ] `metadata.json`: Version 0.1.0 → 0.1.1
-- [ ] `./scripts/build.sh` builds `protea-launcher-0.1.1.plasmoid`
+- [x] This file: Target is Plasma 6.8 (built on 6.7.5, Fedora 44; updated on 6.8.0, Arch); the Kickoff reference points at v6.8.0 (the three files it names are still there, and none of what it describes changed); Dev setup uses `pacman` and the lint script
+- [x] README: Requirements say Plasma 6.8 (6.7 should also work); Development gives `plasma-sdk` for Arch and Fedora and lists `./scripts/lint.sh`
+- [x] `metadata.json`: Version 0.1.0 → 0.1.1
+- [x] `./scripts/build.sh` builds `protea-launcher-0.1.1.plasmoid`
+- [x] The `.plasmoid` installs with `kpackagetool6` into an empty folder (`--packageroot`) and upgrades the copy in the panel; both match `package/` file for file. The panel already runs this code (installed in Phase 10); plasmashell shows 0.1.1 from its next restart
 
 **Done when:** the 0.1.1 `.plasmoid` installs with `kpackagetool6` and runs on 6.8, and the docs describe 6.8 and Arch.
 
@@ -250,7 +251,8 @@ Things only a running session shows. Most were checked offscreen: the real popup
 
 ## Dev setup
 
-- `sudo dnf install plasma-sdk` provides `plasmoidviewer`, for testing the popup in its own window with QML errors shown in the terminal.
+- `sudo pacman -S plasma-sdk` (`sudo dnf install plasma-sdk` on Fedora) provides `plasmoidviewer`, for testing the popup in its own window with QML errors shown in the terminal.
+- Lint: `./scripts/lint.sh` runs qmllint over every QML file in `package/`. Plasma's i18n functions are declared for it in `.contextProperties.ini`; the warnings it still prints are listed under Phase 8.
 - Install: `kpackagetool6 -t Plasma/Applet -i package/`. Update: `kpackagetool6 -t Plasma/Applet -u package/`, then restart plasmashell (`systemctl --user restart plasma-plasmashell`).
 - Logs from the panel: `journalctl --user -f -t plasmashell`.
 - Kickoff currently sits at the left end of the bottom panel. Protea takes whichever spot Kickoff is in when swapped through Show Alternatives, and can be moved in panel edit mode.

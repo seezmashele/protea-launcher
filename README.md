@@ -6,7 +6,7 @@ See [PLAN.md](PLAN.md) for the design and how it was built, and [DIMENSIONS.md](
 
 ## Requirements
 
-- KDE Plasma 6 (developed on Plasma 6.7)
+- KDE Plasma 6.8 (6.7 should also work)
 
 ## Install
 
@@ -73,13 +73,14 @@ Right-click any free space in the popup and choose **Configure Launcher**, the o
 
 ## Development
 
-You'll need `plasma-sdk` for previewing (`sudo dnf install plasma-sdk` on Fedora).
+You'll need `plasma-sdk` for previewing: `sudo pacman -S plasma-sdk` on Arch, `sudo dnf install plasma-sdk` on Fedora.
 
 | Command | What it does |
 |---|---|
 | `./scripts/preview.sh` | Opens the widget in a window, with QML errors printed to the terminal |
 | `./scripts/install.sh` | Installs for the current user, or upgrades and restarts plasmashell |
 | `./scripts/build.sh` | Builds `protea-launcher-<version>.plasmoid` from `package/` |
+| `./scripts/lint.sh` | Checks every QML file in `package/` with qmllint |
 | `systemctl --user restart plasma-plasmashell` | Restarts plasmashell by hand, e.g. after running `kpackagetool6 --upgrade` yourself |
 
 ## License
