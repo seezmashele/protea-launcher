@@ -42,6 +42,7 @@ PlasmaExtras.SearchField {
         color: Qt.alpha(Kirigami.Theme.textColor, 0.1)
         // No outline at rest, as Protea Dark draws its own fields.
         border.width: root.activeFocus || root.hovered ? 1 : 0
-        border.color: root.activeFocus ? Kirigami.Theme.focusColor : Kirigami.Theme.hoverColor
+        // The hover colour is the accent colour when Plasma applies one.
+        border.color: root.activeFocus ? Kirigami.Theme.focusColor : Qt.alpha(Kirigami.Theme.hoverColor, 0.5)
     }
 }

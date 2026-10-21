@@ -78,9 +78,9 @@ T.Control {
     // The same gap between the popup's edges and the sections, and between the sections.
     readonly property real sectionGap: Kirigami.Units.largeSpacing * 1.5
 
-    readonly property bool darkSearchBar: Plasmoid.configuration.searchBarDarkBackground
-    readonly property bool darkUtilityBar: Plasmoid.configuration.utilityBarDarkBackground
-    // Fill of the optional dark bands behind the search bar and utility bar.
+    // Whether the header and footer (the search bar and utility bar) sit in dark bands.
+    readonly property bool darkHeaderFooter: Plasmoid.configuration.headerFooterDarkBackground
+    // Fill of those bands.
     readonly property color darkBandColor: Qt.rgba(0, 0, 0, 0.25)
 
     // Apps left out of the grid (they still show up in search), by desktop file ID.
@@ -101,8 +101,8 @@ T.Control {
     // With a dark background a bar sits in a band that runs to the popup's edge, which is
     // popupFrame's margin beyond this item; take that off the padding on that side so the
     // band has the same space on both sides of the bar.
-    topPadding: darkSearchBar ? sectionGap - popupFrame.topMargin : sectionGap
-    bottomPadding: darkUtilityBar ? sectionGap - popupFrame.bottomMargin : sectionGap
+    topPadding: darkHeaderFooter ? sectionGap - popupFrame.topMargin : sectionGap
+    bottomPadding: darkHeaderFooter ? sectionGap - popupFrame.bottomMargin : sectionGap
 
     onExpandedChanged: {
         if (expanded) {
@@ -156,7 +156,7 @@ T.Control {
     Rectangle {
         id: searchBarBackground
 
-        visible: root.darkSearchBar
+        visible: root.darkHeaderFooter
         z: -1
         x: -popupFrame.leftMargin
         y: -popupFrame.topMargin
@@ -172,7 +172,7 @@ T.Control {
     Rectangle {
         id: utilityBarBackground
 
-        visible: root.darkUtilityBar
+        visible: root.darkHeaderFooter
         z: -1
         x: -popupFrame.leftMargin
         y: root.topPadding + utilityBar.y - root.sectionGap
@@ -261,8 +261,8 @@ T.Control {
             Layout.fillWidth: true
             // In the dark band, reach into Plasma's frame at the sides as the band does, so
             // the bar is sectionGap from the band's edges on all four sides.
-            Layout.leftMargin: root.darkSearchBar ? -popupFrame.leftMargin : 0
-            Layout.rightMargin: root.darkSearchBar ? -popupFrame.rightMargin : 0
+            Layout.leftMargin: root.darkHeaderFooter ? -popupFrame.leftMargin : 0
+            Layout.rightMargin: root.darkHeaderFooter ? -popupFrame.rightMargin : 0
 
             roundCorners: Plasmoid.configuration.searchBarRoundCorners
 
@@ -316,8 +316,8 @@ T.Control {
             id: utilityBar
             Layout.fillWidth: true
             // As the search bar: sectionGap from the dark band's edges on all four sides.
-            Layout.leftMargin: root.darkUtilityBar ? -popupFrame.leftMargin : 0
-            Layout.rightMargin: root.darkUtilityBar ? -popupFrame.rightMargin : 0
+            Layout.leftMargin: root.darkHeaderFooter ? -popupFrame.leftMargin : 0
+            Layout.rightMargin: root.darkHeaderFooter ? -popupFrame.rightMargin : 0
 
             buttons: Plasmoid.configuration.utilityButtons
             powerMenuActions: Plasmoid.configuration.powerMenuActions

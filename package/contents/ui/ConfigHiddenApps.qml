@@ -36,12 +36,10 @@ KCM.ScrollViewKCM {
     property var cfg_utilityButtonsDefault
     property var cfg_powerMenuActions
     property var cfg_powerMenuActionsDefault
-    property var cfg_utilityBarDarkBackground
-    property var cfg_utilityBarDarkBackgroundDefault
+    property var cfg_headerFooterDarkBackground
+    property var cfg_headerFooterDarkBackgroundDefault
     property var cfg_searchBarRoundCorners
     property var cfg_searchBarRoundCornersDefault
-    property var cfg_searchBarDarkBackground
-    property var cfg_searchBarDarkBackgroundDefault
 
     // Name and icon of every installed app by ID, once Kicker's app list has loaded.
     property var installedApps: null

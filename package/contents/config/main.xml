@@ -9,13 +9,13 @@
             <label>Icon shown on the panel button: an icon name or a file path. Empty uses Protea's own icon.</label>
             <default></default>
         </entry>
-        <entry name="searchBarRoundCorners" type="Bool">
-            <label>Whether the search bar has fully rounded ends instead of the theme's corners. Round fills it with the text colour at 10%, with no outline at rest and the colour scheme's hover and focus colours as its outline.</label>
-            <default>true</default>
-        </entry>
-        <entry name="searchBarDarkBackground" type="Bool">
-            <label>Whether to draw a dark background (black at 25% opacity) behind the search bar.</label>
+        <entry name="headerFooterDarkBackground" type="Bool">
+            <label>Whether to draw dark backgrounds (black at 25% opacity) behind the header and footer: the search bar at the top and the utility bar at the bottom.</label>
             <default>false</default>
+        </entry>
+        <entry name="searchBarRoundCorners" type="Bool">
+            <label>Whether the search bar has fully rounded ends instead of the theme's corners. Round fills it with the text colour at 10%, with no outline at rest, the hover colour (the accent) at 50% as its outline on hover, and the focus colour while it has focus.</label>
+            <default>true</default>
         </entry>
         <entry name="columns" type="Int">
             <label>Number of app grid columns the popup is sized for.</label>
@@ -44,10 +44,6 @@
         <entry name="utilityButtons" type="StringList">
             <label>Buttons on the right of the utility bar: "settings" opens System Settings and "power" opens the power menu. Session actions (lock-screen, logout, save-session, switch-user, suspend, hibernate, reboot, shutdown) can also be listed to give them buttons of their own.</label>
             <default>settings,power</default>
-        </entry>
-        <entry name="utilityBarDarkBackground" type="Bool">
-            <label>Whether to draw a dark background (black at 25% opacity) behind the utility bar.</label>
-            <default>false</default>
         </entry>
         <entry name="powerMenuActions" type="StringList">
             <label>Session actions listed in the power menu: lock-screen, logout, save-session, switch-user, suspend, hibernate, reboot, shutdown. Actions the system doesn't support are hidden.</label>

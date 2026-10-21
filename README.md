@@ -58,15 +58,16 @@ kpackagetool6 --type Plasma/Applet --remove dev.protea.launcher
 
 Right-click any free space in the popup and choose **Configure Launcher**, the only item in that menu. Right-clicking Protea's panel icon has it too, next to **Show Alternatives…**. Those are the only two items there, so for the panel's own options (Add Widgets, Enter Edit Mode) right-click an empty spot on the panel. The popup sizes itself from the columns, rows and size settings; it can't be dragged to another size.
 
+The settings are on three pages: **General** (panel icon, appearance and the app grid), **Utility Bar** (its buttons, and a table of session actions with a column for each place they can go: a button of their own, the power menu, or both) and **Hidden Apps**.
+
 | Setting | Default |
 |---|---|
 | Panel icon | Protea's own icon; pick any icon or reset back to it |
-| Search bar background | Off; tick it for a dark band (black at 25% opacity) behind the search bar, running to the popup's edges |
+| Header and footer background | Off; tick it for dark bands (black at 25% opacity) behind the search bar at the top and the utility bar at the bottom, running to the popup's edges |
 | Search bar corners | Round (fully rounded ends, filled with the text colour at 10%); or Default, the theme's own search field |
 | Columns × rows | 6 × 5 (3 to 12 each); the popup sizes itself to fit |
 | Size | Cozy; also Compact, Small, Medium and Large. Each sets the icon size and its tile size |
 | Use smaller tiles | Off; tick it for tiles 8 px smaller at whichever size is chosen |
-| Utility bar background | Off; tick it for a dark band (black at 25% opacity) behind the bar, running to the popup's edges |
 | Buttons on the utility bar | System Settings and the power menu; any session action can also get its own button |
 | Power menu items | Every session action the system supports |
 | Hidden apps | None. The **Hidden Apps** page lists them, each with **Unhide** |

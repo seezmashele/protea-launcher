@@ -12,43 +12,37 @@ import QtQuick.Controls as QQC2
 import org.kde.iconthemes as KIconThemes
 import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCM
-import org.kde.plasma.private.kicker as Kicker
 
 KCM.SimpleKCM {
     id: root
 
     // Plasma fills these from the widget's settings and saves them on Apply.
     property string cfg_icon
+    property alias cfg_headerFooterDarkBackground: headerFooterDarkBackground.checked
+    property bool cfg_searchBarRoundCorners
     property alias cfg_columns: columns.value
     property alias cfg_rows: rows.value
     property string cfg_gridSize
     property alias cfg_smallerTiles: smallerTiles.checked
-    property var cfg_utilityButtons: []
-    property var cfg_powerMenuActions: []
-    property alias cfg_utilityBarDarkBackground: darkBackground.checked
-    property bool cfg_searchBarRoundCorners
-    property alias cfg_searchBarDarkBackground: searchBarDarkBackground.checked
 
     // Plasma also passes each setting's default; these give it somewhere to go.
     property string cfg_iconDefault
+    property bool cfg_headerFooterDarkBackgroundDefault
+    property bool cfg_searchBarRoundCornersDefault
     property int cfg_columnsDefault
     property int cfg_rowsDefault
     property string cfg_gridSizeDefault
     property bool cfg_smallerTilesDefault
-    property var cfg_utilityButtonsDefault
-    property var cfg_powerMenuActionsDefault
-    property bool cfg_utilityBarDarkBackgroundDefault
-    property bool cfg_searchBarRoundCornersDefault
-    property bool cfg_searchBarDarkBackgroundDefault
 
-    // Set on the Hidden Apps page; Plasma hands every setting to every page.
+    // Set on the Utility Bar and Hidden Apps pages; Plasma hands every setting to every page.
+    property var cfg_utilityButtons
+    property var cfg_utilityButtonsDefault
+    property var cfg_powerMenuActions
+    property var cfg_powerMenuActionsDefault
     property var cfg_hiddenApps
     property var cfg_hiddenAppsDefault
 
     readonly property string defaultIcon: Qt.resolvedUrl("../icons/protea.svg").toString()
-
-    // Session actions this system supports, with Plasma's names for them.
-    readonly property Kicker.SystemModel systemModel: Kicker.SystemModel {}
 
     // App grid sizes in order; the values are the popup's gridSizes keys.
     readonly property var gridSizeOptions: [
@@ -58,24 +52,6 @@ KCM.SimpleKCM {
         { text: i18nc("@item:inlistbox app grid size", "Medium"), value: "medium" },
         { text: i18nc("@item:inlistbox app grid size", "Large"), value: "large" },
     ]
-
-    function includes(list, id) {
-        return Array.from(list ?? []).includes(id)
-    }
-
-    // A copy of list with id added or removed.
-    function withItem(list, id, add) {
-        const rest = Array.from(list ?? []).filter(item => item !== id)
-        return add ? rest.concat([id]) : rest
-    }
-
-    component ListCheckBox: QQC2.CheckBox {
-        required property string itemId
-        required property string listName
-
-        checked: root.includes(root[listName], itemId)
-        onToggled: root[listName] = root.withItem(root[listName], itemId, checked)
-    }
 
     Kirigami.FormLayout {
         QQC2.Button {
@@ -129,17 +105,18 @@ KCM.SimpleKCM {
 
         Item {
             Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18nc("@title:group", "Search Bar")
+            Kirigami.FormData.label: i18nc("@title:group", "Appearance")
         }
 
+        // Dark bands behind the search bar at the top and the utility bar at the bottom.
         QQC2.CheckBox {
-            id: searchBarDarkBackground
-            Kirigami.FormData.label: i18nc("@label", "Background:")
-            text: i18nc("@option:check", "Dark")
+            id: headerFooterDarkBackground
+            Kirigami.FormData.label: i18nc("@label", "Header and footer:")
+            text: i18nc("@option:check", "Dark background")
         }
 
         QQC2.ComboBox {
-            Kirigami.FormData.label: i18nc("@label:listbox", "Corners:")
+            Kirigami.FormData.label: i18nc("@label:listbox", "Search bar corners:")
             model: [
                 i18nc("@item:inlistbox search bar corners", "Default"),
                 i18nc("@item:inlistbox search bar corners", "Round"),
@@ -153,18 +130,29 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18nc("@title:group", "App Grid")
         }
 
-        QQC2.SpinBox {
-            id: columns
-            Kirigami.FormData.label: i18nc("@label:spinbox", "Columns:")
-            from: 3
-            to: 12
-        }
+        // Columns × rows, read as one: "6 columns × 5 rows".
+        RowLayout {
+            Kirigami.FormData.label: i18nc("@label", "Grid:")
+            spacing: Kirigami.Units.smallSpacing
 
-        QQC2.SpinBox {
-            id: rows
-            Kirigami.FormData.label: i18nc("@label:spinbox", "Rows:")
-            from: 3
-            to: 12
+            QQC2.SpinBox {
+                id: columns
+                from: 3
+                to: 12
+                Accessible.name: i18nc("@label:spinbox", "Columns")
+            }
+            QQC2.Label {
+                text: i18nc("@label:spinbox between the columns and rows boxes, as in '6 columns × 5 rows'", "columns ×")
+            }
+            QQC2.SpinBox {
+                id: rows
+                from: 3
+                to: 12
+                Accessible.name: i18nc("@label:spinbox", "Rows")
+            }
+            QQC2.Label {
+                text: i18nc("@label:spinbox after the rows box, as in '6 columns × 5 rows'", "rows")
+            }
         }
 
         QQC2.ComboBox {
@@ -179,65 +167,6 @@ KCM.SimpleKCM {
         QQC2.CheckBox {
             id: smallerTiles
             text: i18nc("@option:check", "Use smaller tiles")
-        }
-
-        Item {
-            Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18nc("@title:group", "Utility Bar")
-        }
-
-        QQC2.CheckBox {
-            id: darkBackground
-            Kirigami.FormData.label: i18nc("@label", "Background:")
-            text: i18nc("@option:check", "Dark")
-        }
-
-        ColumnLayout {
-            Kirigami.FormData.label: i18nc("@label", "Buttons:")
-            Kirigami.FormData.labelAlignment: Qt.AlignTop
-            spacing: 0
-
-            ListCheckBox {
-                text: i18nc("@option:check", "System Settings")
-                itemId: "settings"
-                listName: "cfg_utilityButtons"
-            }
-            ListCheckBox {
-                text: i18nc("@option:check", "Power menu")
-                itemId: "power"
-                listName: "cfg_utilityButtons"
-            }
-            Repeater {
-                model: root.systemModel
-                delegate: ListCheckBox {
-                    required property var model
-                    text: model.display
-                    itemId: model.favoriteId
-                    listName: "cfg_utilityButtons"
-                }
-            }
-            QQC2.Label {
-                Layout.maximumWidth: Kirigami.Units.gridUnit * 16
-                text: i18nc("@info", "A session action ticked here gets a button of its own, next to the power menu.")
-                font: Kirigami.Theme.smallFont
-                wrapMode: Text.Wrap
-            }
-        }
-
-        ColumnLayout {
-            Kirigami.FormData.label: i18nc("@label", "Power menu:")
-            Kirigami.FormData.labelAlignment: Qt.AlignTop
-            spacing: 0
-
-            Repeater {
-                model: root.systemModel
-                delegate: ListCheckBox {
-                    required property var model
-                    text: model.display
-                    itemId: model.favoriteId
-                    listName: "cfg_powerMenuActions"
-                }
-            }
         }
     }
 }

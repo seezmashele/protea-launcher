@@ -10,7 +10,7 @@ Every size and gap used in the launcher popup, measured from the running code.
 
 ## At a glance
 
-Content area: **744 × 710px** (4px less for each dark background: 744 × 706 with one, 744 × 702 with both). The popup has **12px padding** on every side and its three sections (search bar, app grid, utility bar) are **12px apart**, so the search bar and utility bar have 12px on all sides. The app grid spans the popup's full width and has one **24px gap** at each side of the tiles, with the scrollbar inside the right one, so the tiles are centred whether or not the scrollbar shows. Above the first row and below the last there's **8px** of empty space that scrolls with the tiles.
+Content area: **744 × 710px** (744 × 702 with the dark header and footer). The popup has **12px padding** on every side and its three sections (search bar, app grid, utility bar) are **12px apart**, so the search bar and utility bar have 12px on all sides. The app grid spans the popup's full width and has one **24px gap** at each side of the tiles, with the scrollbar inside the right one, so the tiles are centred whether or not the scrollbar shows. Above the first row and below the last there's **8px** of empty space that scrolls with the tiles.
 
 ### Top to bottom
 
@@ -27,7 +27,7 @@ Content area: **744 × 710px** (4px less for each dark background: 744 × 706 wi
 | 698 | 12 | Popup padding |
 | **710** | | **Total** |
 
-Positions in the grid are at the top of the list. With the dark utility bar background the popup's bottom padding drops to 8, because the band runs on into Plasma's 4px frame and so still has 12 below the bar. The dark search bar background does the same at the top: top padding 8, with 12 above the search bar inside the band. Each takes 4 off the total: 706 with one, 702 with both.
+Positions in the grid are at the top of the list. With the dark header and footer the popup's top and bottom padding drop to 8, because each band runs on into Plasma's 4px frame and so still has 12 above the search bar and below the utility bar. That takes 8 off the total: 702.
 
 ### Left to right
 
@@ -39,7 +39,7 @@ Positions in the grid are at the top of the list. With the dark utility bar back
 
 The search box and the avatar start at 12 and the tiles at 24 (12 further in). On the right, the tiles end at 720, the search box and the power button end at 732, and the scrollbar slot runs from 726 to the popup's edge at 744, with its visible handle at 732–738: 12 from the tiles and 6 from the edge.
 
-With a bar's dark background on, that bar is 728 wide, from 8 to 736: it reaches 4 into Plasma's frame on each side, as the band does, so it's 12 from the band's edges on all four sides.
+With the dark header and footer on, each bar is 728 wide, from 8 to 736: it reaches 4 into Plasma's frame on each side, as its band does, so it's 12 from the band's edges on all four sides.
 
 ### Size of the popup
 
@@ -56,9 +56,9 @@ It only ends up smaller if Plasma has to shrink it to fit the screen (Plasma cap
 
 | Property | Value | Source |
 |---|---|---|
-| Content size | 744 × 710 (4 less for each dark background: 706 with one, 702 with both) | Worked out by the layout from the content: columns × rows of tiles, the padding around them, and the bars |
+| Content size | 744 × 710 (744 × 702 with the dark header and footer) | Worked out by the layout from the content: columns × rows of tiles, the padding around them, and the bars |
 | Size limits | Minimum = maximum = content size, for both width and height | `Layout.minimum…`/`maximum…` bound to the implicit size; Plasma takes the popup's size limits from them, so it can't be dragged to another size |
-| Padding (all four sides) | 12 (8 at the top or bottom with that bar's dark background) | `padding` = `sectionGap` = `Kirigami.Units.largeSpacing × 1.5`; the app grid has `Layout.leftMargin` and `Layout.rightMargin` of −12 to span the full width, and its own gap at each side instead |
+| Padding (all four sides) | 12 (8 at the top and bottom with the dark header and footer) | `padding` = `sectionGap` = `Kirigami.Units.largeSpacing × 1.5`; the app grid has `Layout.leftMargin` and `Layout.rightMargin` of −12 to span the full width, and its own gap at each side instead |
 | Section spacing | 12 | `spacing` = `sectionGap` |
 
 ## Search bar
@@ -68,9 +68,9 @@ It only ends up smaller if Plasma has to shrink it to fit the screen (Plasma cap
 | Size | 720 × 30 (728 × 30 with the dark background) | Width fills the space inside the padding; height is `PlasmaExtras.SearchField`'s own |
 | Position | x 12, y 12 (x 8, y 8 with the dark background) | Popup padding |
 | Gap on every side | 12 | Padding on three sides, section spacing below; with the dark background, to the band's edges on all four sides |
-| Corners | Fully round ends (Round, the default): radius 15, half the height; or the theme's (Default) | `searchBarRoundCorners` setting. Round draws the field itself, filled with the text colour at 10% and with no outline at rest (as Protea Dark draws its own fields), a 1px hover-colour outline on hover and focus-colour outline while typing, and keeps the theme's padding, so only the corners and fill change |
+| Corners | Fully round ends (Round, the default): radius 15, half the height; or the theme's (Default) | `searchBarRoundCorners` setting. Round draws the field itself, filled with the text colour at 10% and with no outline at rest (as Protea Dark draws its own fields), a 1px outline in the hover colour (the accent) at 50% on hover and in the focus colour while typing, and keeps the theme's padding, so only the corners and fill change |
 | Placeholder text | "Search…" | Plasma's default |
-| Dark background (optional, off by default) | A band from the popup's top, left and right edges (it reaches the 4px of Plasma's popup frame beyond the content) to the top of the grid. Turning it on takes the frame's 4px off the top padding, so the popup is 4 shorter, and widens the search bar by 4 on each side, so it's 12 (`sectionGap`) from the band's edges on all four sides | `searchBarDarkBackground` setting; black at 25% opacity, like the utility bar's; top corners rounded with `Kirigami.Units.cornerRadius` (5) to match the popup |
+| Dark background (optional, off by default) | A band from the popup's top, left and right edges (it reaches the 4px of Plasma's popup frame beyond the content) to the top of the grid. Turning it on takes the frame's 4px off the top padding (the footer's band takes another 4 off the bottom), and widens the search bar by 4 on each side, so it's 12 (`sectionGap`) from the band's edges on all four sides | `headerFooterDarkBackground` setting, which turns on the utility bar's band too; black at 25% opacity; top corners rounded with `Kirigami.Units.cornerRadius` (5) to match the popup |
 
 ## App grid
 
@@ -118,7 +118,7 @@ Content needs 8 + 44 + 4 + 36 + 8 = 100, so the tile is its set size: max(116, 1
 | Button icon | 16 × 16, monochrome, centered | `Kirigami.Units.iconSizes.small`; `-symbolic` icon names |
 | Button group | 80 wide (2 buttons, 1 gap of 8) | 2 × 36 + 8 |
 | Power menu | Opens above the power button, right edges aligned (below it when the panel is at the top or a side) | Plasma's native menu (`PlasmaExtras.Menu`) |
-| Dark background (optional, off by default) | A band from the bottom of the grid to the popup's left, right and bottom edges (it reaches the 4px of Plasma's popup frame beyond the content). Turning it on takes the frame's 4px off the bottom padding, so the popup is 744 × 706, and widens the bar by 4 on each side, so it's 12 (`sectionGap`) from the band's edges on all four sides | `utilityBarDarkBackground` setting; black at 25% opacity; bottom corners rounded with `Kirigami.Units.cornerRadius` (5) to match the popup |
+| Dark background (optional, off by default) | A band from the bottom of the grid to the popup's left, right and bottom edges (it reaches the 4px of Plasma's popup frame beyond the content). Turning it on takes the frame's 4px off the bottom padding (with the header's 4 off the top, the popup is 744 × 702), and widens the bar by 4 on each side, so it's 12 (`sectionGap`) from the band's edges on all four sides | `headerFooterDarkBackground` setting, shared with the search bar's band; black at 25% opacity; bottom corners rounded with `Kirigami.Units.cornerRadius` (5) to match the popup |
 
 ## Kirigami units in use
 
@@ -173,7 +173,7 @@ The app grid's **Size** setting picks one of five sizes, each an icon size and a
 | Large, smaller tiles | 104 | 13 / 11 | 768 × 730 |
 
 - Width = columns × tile + 48: the 24 gap at each side of the grid.
-- Height = rows × tile + 130: 62 above the tiles (12 + 30 + 12 + 8) and 68 below them (8 + 12 + 36 + 12). 4 less for each dark background.
+- Height = rows × tile + 130: 62 above the tiles (12 + 30 + 12 + 8) and 68 below them (8 + 12 + 36 + 12). 8 less with the dark header and footer.
 
 ## Where it's set
 

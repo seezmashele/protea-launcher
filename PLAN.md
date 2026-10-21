@@ -65,7 +65,8 @@ protea-launcher/
 │           ├── main.qml              # widget root: models, panel button, popup wiring
 │           ├── CompactRepresentation.qml   # the panel button and its right-click menu
 │           ├── FullRepresentation.qml   # the popup: stacks the three sections
-│           ├── ConfigGeneral.qml     # settings page (must sit at the ui/ root)
+│           ├── ConfigGeneral.qml     # General settings page (settings pages must sit at the ui/ root)
+│           ├── ConfigUtilityBar.qml  # Utility Bar settings page
 │           ├── ConfigHiddenApps.qml  # Hidden Apps settings page
 │           ├── search/
 │           │   └── SearchBar.qml
@@ -180,7 +181,7 @@ Each phase ends with something that can be opened and checked before moving on.
 **Done when:** right-clicking any tile shows that app's actions and they work.
 
 ### Phase 7: Settings page and packaging
-- [x] `ConfigGeneral.qml`: panel icon picker, columns, rows, icon size, tile size, utility bar buttons and power menu items; later also optional dark backgrounds behind the search bar and utility bar, round search bar corners, and named sizes (Compact, Small, Cozy, Medium, Large) with a Use smaller tiles option in place of the number boxes
+- [x] `ConfigGeneral.qml`: panel icon picker, columns, rows, icon size, tile size, utility bar buttons and power menu items; later also optional dark backgrounds behind the search bar and utility bar (since combined into one setting), round search bar corners, and named sizes (Compact, Small, Cozy, Medium, Large) with a Use smaller tiles option in place of the number boxes
 - [x] Custom protea panel icon in `icons/protea.svg` (monochrome, follows the panel's text colour; also the icon in Add Widgets)
 - [x] `scripts/build.sh`: creates `protea-launcher-<version>.plasmoid`
 - [x] Install, usage and settings instructions in `README.md`
@@ -243,6 +244,11 @@ Things only a running session shows. Most were checked offscreen: the real popup
 - [x] The `.plasmoid` installs with `kpackagetool6` into an empty folder (`--packageroot`) and upgrades the copy in the panel; both match `package/` file for file. The panel already runs this code (installed in Phase 10); plasmashell shows 0.1.1 from its next restart
 
 **Done when:** the 0.1.1 `.plasmoid` installs with `kpackagetool6` and runs on 6.8, and the docs describe 6.8 and Arch.
+
+## Added later: Search bar, header and footer, settings layout
+- [x] The round search bar is filled with the text colour at 10%, as Protea Dark fills its own fields (it was the view background, darker than the popup), with no outline at rest, the hover colour (the accent) at 50% as its outline on hover, and the focus colour while it has focus
+- [x] One setting for both dark bands: `headerFooterDarkBackground` ("Header and footer: Dark background", just under the panel icon in the settings) replaces `searchBarDarkBackground` and `utilityBarDarkBackground`. A popup that had only one band turns it off after updating, until the new box is ticked. Checked offscreen: off is 744 × 710, on is 744 × 702 with both bands, as before with both on
+- [x] Settings rearranged over three pages. General: the panel icon, an Appearance section (Header and footer, Search bar corners) and the App Grid section, with columns × rows on one row ("Grid: [6] columns × [5] rows"). Utility Bar (`ConfigUtilityBar.qml`, new): the System Settings and Power menu buttons, then each session action once in a table with a Button column and an In power menu column, greyed out while the power menu button is off. Hidden Apps unchanged. No setting changed, so saved settings carry over. Checked offscreen: both pages load, and ticking boxes in either column saves the right list
 
 ## Later (out of scope)
 

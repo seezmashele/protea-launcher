@@ -12,6 +12,11 @@ PlasmaConfig.ConfigModel {
         source: "ConfigGeneral.qml"
     }
     PlasmaConfig.ConfigCategory {
+        name: i18nc("@title:group for configuration dialog page", "Utility Bar")
+        icon: "configure-toolbars"
+        source: "ConfigUtilityBar.qml"
+    }
+    PlasmaConfig.ConfigCategory {
         name: i18nc("@title:group for configuration dialog page", "Hidden Apps")
         icon: "hint"
         source: "ConfigHiddenApps.qml"
