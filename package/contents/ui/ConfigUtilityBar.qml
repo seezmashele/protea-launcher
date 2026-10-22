@@ -11,15 +11,18 @@ import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCM
 import org.kde.plasma.private.kicker as Kicker
 
-// The Utility Bar settings page: the avatar and buttons on the bar, and for each session
-// action whether it gets a button of its own, a place in the power menu, or both.
+// The Utility Bar settings page: whether the bar is shown, the avatar and buttons on it,
+// and for each session action whether it gets a button of its own, a place in the power
+// menu, or both.
 KCM.SimpleKCM {
     id: root
 
     // Plasma fills these from the widget's settings and saves them on Apply.
+    property alias cfg_showUtilityBar: showUtilityBarCheckBox.checked
     property alias cfg_showAvatar: showAvatarCheckBox.checked
     property var cfg_utilityButtons: []
     property var cfg_powerMenuActions: []
+    property bool cfg_showUtilityBarDefault
     property bool cfg_showAvatarDefault
     property var cfg_utilityButtonsDefault
     property var cfg_powerMenuActionsDefault
@@ -67,7 +70,15 @@ KCM.SimpleKCM {
     }
 
     Kirigami.FormLayout {
+        QQC2.CheckBox {
+            id: showUtilityBarCheckBox
+            Kirigami.FormData.label: i18nc("@label", "Utility bar:")
+            text: i18nc("@option:check", "Show")
+        }
+
+        // The rest of the page is about the bar, so it's greyed out while the bar is hidden.
         ColumnLayout {
+            enabled: showUtilityBarCheckBox.checked
             Kirigami.FormData.label: i18nc("@label", "Buttons:")
             Kirigami.FormData.labelAlignment: Qt.AlignTop
             spacing: 0
@@ -92,6 +103,7 @@ KCM.SimpleKCM {
         // Each cell names its own row and column: Kicker fills the list of actions after
         // the page is built, and the Repeaters' cells would otherwise land at the end.
         GridLayout {
+            enabled: showUtilityBarCheckBox.checked
             Kirigami.FormData.label: i18nc("@label", "Session actions:")
             Kirigami.FormData.labelAlignment: Qt.AlignTop
             columns: 3
@@ -152,6 +164,7 @@ KCM.SimpleKCM {
         }
 
         QQC2.Label {
+            enabled: showUtilityBarCheckBox.checked
             Layout.maximumWidth: Kirigami.Units.gridUnit * 16
             text: i18nc("@info", "An action with Button ticked gets a button of its own on the bar, next to the power menu.")
             font: Kirigami.Theme.smallFont

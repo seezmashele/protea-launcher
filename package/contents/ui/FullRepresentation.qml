@@ -83,6 +83,10 @@ T.Control {
     // Fill of those bands.
     readonly property color darkBandColor: Qt.rgba(0, 0, 0, 0.25)
 
+    // Whether the utility bar is shown. Without it the grid's own space below the last row
+    // and the bottom padding are all that's under the grid, matching the space above it.
+    readonly property bool utilityBarShown: Plasmoid.configuration.showUtilityBar
+
     // Apps left out of the grid (they still show up in search), by desktop file ID.
     readonly property list<string> hiddenApps: Plasmoid.configuration.hiddenApps
 
@@ -100,9 +104,10 @@ T.Control {
     padding: sectionGap
     // With a dark background a bar sits in a band that runs to the popup's edge, which is
     // popupFrame's margin beyond this item; take that off the padding on that side so the
-    // band has the same space on both sides of the bar.
+    // band has the same space on both sides of the bar. With no utility bar there's no
+    // band at the bottom, so the bottom padding stays as it is.
     topPadding: darkHeaderFooter ? sectionGap - popupFrame.topMargin : sectionGap
-    bottomPadding: darkHeaderFooter ? sectionGap - popupFrame.bottomMargin : sectionGap
+    bottomPadding: darkHeaderFooter && utilityBarShown ? sectionGap - popupFrame.bottomMargin : sectionGap
 
     onExpandedChanged: {
         if (expanded) {
@@ -172,7 +177,7 @@ T.Control {
     Rectangle {
         id: utilityBarBackground
 
-        visible: root.darkHeaderFooter
+        visible: root.darkHeaderFooter && root.utilityBarShown
         z: -1
         x: -popupFrame.leftMargin
         y: root.topPadding + utilityBar.y - root.sectionGap
@@ -312,8 +317,10 @@ T.Control {
             onUnhideRequested: appId => Plasmoid.configuration.hiddenApps = Array.from(root.hiddenApps).filter(id => id !== appId)
         }
 
+        // Hidden, the layout leaves out the bar and the section gap above it.
         UtilityBar {
             id: utilityBar
+            visible: root.utilityBarShown
             Layout.fillWidth: true
             // As the search bar: sectionGap from the dark band's edges on all four sides.
             Layout.leftMargin: root.darkHeaderFooter ? -popupFrame.leftMargin : 0

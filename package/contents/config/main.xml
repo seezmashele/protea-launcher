@@ -42,6 +42,10 @@
             <label>Apps left out of the app grid, by desktop file ID (e.g. "org.kde.dolphin.desktop"). They still show up in search results.</label>
             <default></default>
         </entry>
+        <entry name="showUtilityBar" type="Bool">
+            <label>Whether the popup has the utility bar at the bottom: the user's avatar, System Settings, the power menu and any session action buttons. Without it the popup is shorter by the bar and the gap above it.</label>
+            <default>true</default>
+        </entry>
         <entry name="showAvatar" type="Bool">
             <label>Whether the utility bar shows the user's avatar on its left, which opens their user settings.</label>
             <default>true</default>

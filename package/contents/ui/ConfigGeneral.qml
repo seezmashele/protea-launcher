@@ -35,6 +35,8 @@ KCM.SimpleKCM {
     property bool cfg_largerTilesDefault
 
     // Set on the Utility Bar and Hidden Apps pages; Plasma hands every setting to every page.
+    property var cfg_showUtilityBar
+    property var cfg_showUtilityBarDefault
     property var cfg_showAvatar
     property var cfg_showAvatarDefault
     property var cfg_utilityButtons

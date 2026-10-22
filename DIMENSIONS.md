@@ -29,6 +29,8 @@ Content area: **696 × 562px** (696 × 554 with the dark header and footer). The
 
 Positions in the grid are at the top of the list. With the dark header and footer the popup's top and bottom padding drop to 8, because each band runs on into Plasma's 4px frame and so still has 12 above the search bar and below the utility bar. That takes 8 off the total: 554.
 
+With the utility bar hidden (**Utility bar: Show** unticked) the bar and the section spacing above it are left out, so the popup is **514** tall (48 less). Under the grid there's then its own 8 below the last row and the 12 of padding, the same 20 as between the search bar and the first row. With the dark header and footer there's no footer band, so the bottom padding stays 12: **510**.
+
 ### Left to right
 
 | Row | Left | Content | Right | Total |
@@ -118,6 +120,7 @@ Content needs 8 + 44 + 4 + 36 + 8 = 100, so the tile is its set size: max(108, 1
 | Button icon | 16 × 16, monochrome, centered | `Kirigami.Units.iconSizes.small`; `-symbolic` icon names |
 | Button group | 80 wide (2 buttons, 1 gap of 8) | 2 × 36 + 8 |
 | Power menu | Opens above the power button, right edges aligned (below it when the panel is at the top or a side) | Plasma's native menu (`PlasmaExtras.Menu`) |
+| Hidden (optional, shown by default) | Left out with the section spacing above it; the popup is 48 shorter (514, or 510 with the dark header). No footer band | `showUtilityBar` setting |
 | Dark background (optional, off by default) | A band from the bottom of the grid to the popup's left, right and bottom edges (it reaches the 4px of Plasma's popup frame beyond the content). Turning it on takes the frame's 4px off the bottom padding (with the header's 4 off the top, the popup is 696 × 554), and widens the bar by 4 on each side, so it's 12 (`sectionGap`) from the band's edges on all four sides | `headerFooterDarkBackground` setting, shared with the search bar's band; black at 25% opacity; bottom corners rounded with `Kirigami.Units.cornerRadius` (5) to match the popup |
 
 ## Kirigami units in use
