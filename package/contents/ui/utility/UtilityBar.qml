@@ -16,6 +16,8 @@ import org.kde.kirigami as Kirigami
 RowLayout {
     id: root
 
+    // Whether the avatar is shown. The buttons stay on the right without it.
+    property bool showAvatar: true
     // Buttons on the bar: "settings", "power" (opens the power menu), and any
     // SystemModel action ids, such as "lock-screen", to give them buttons of their own.
     property list<string> buttons
@@ -29,6 +31,7 @@ RowLayout {
     spacing: Kirigami.Units.largeSpacing
 
     UserAvatar {
+        visible: root.showAvatar
         Layout.preferredWidth: Kirigami.Units.iconSizes.medium
         Layout.preferredHeight: Kirigami.Units.iconSizes.medium
         onClicked: root.triggered()

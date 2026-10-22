@@ -3,8 +3,8 @@
 A simple grid-style app launcher for KDE Plasma 6 that replaces the default Application Launcher (Kickoff) in the panel.
 
 - **Name:** Protea Launcher
-- **Widget ID:** `dev.protea.launcher`
-- **Target:** Plasma 6.8 (built on 6.7.5 on Fedora 44; updated on 6.8.0 on Arch). 6.7 should still work
+- **Widget ID:** `org.proteadesktop.launcher` (was `dev.protea.launcher` before the first public release)
+- **Target:** Plasma 6.8 (built on 6.7.5 on Fedora 44; updated on 6.8.0 on Arch). Minimum from 1.0.0: Plasma 6.8 (`X-Plasma-API-Minimum-Version`)
 - **Type:** QML-only plasmoid (no C++, no CMake), installed with `kpackagetool6`
 
 ## Layout
@@ -89,6 +89,7 @@ protea-launcher/
 ├── .contextProperties.ini            # tells qmllint about Plasma's i18n functions
 ├── PLAN.md
 ├── DIMENSIONS.md                     # measured sizes and spacing of the popup
+├── PUBLISHING.md                     # what's left before publishing, and how people will get it
 ├── LICENSE                           # GPL-2.0-or-later (adapts Kickoff code)
 ├── README.md
 └── .gitignore
@@ -130,7 +131,7 @@ Each phase ends with something that can be opened and checked before moving on.
 
 ### Phase 1: Skeleton
 - [x] `git init`, `.gitignore`, `LICENSE`, `README.md`
-- [x] `package/metadata.json`: `dev.protea.launcher`, "Protea Launcher", `X-Plasma-Provides: org.kde.plasma.launchermenu`
+- [x] `package/metadata.json`: `org.proteadesktop.launcher` (`dev.protea.launcher` until the ID was made final in Publishing Phase 1), "Protea Launcher", `X-Plasma-Provides: org.kde.plasma.launchermenu`
 - [x] `main.qml`: panel button; Meta key toggles the popup (`activationTogglesExpanded`)
 - [x] `FullRepresentation.qml`: three labelled placeholder blocks stacked top to bottom
 - [x] `config/main.xml`: panel icon setting
@@ -253,6 +254,7 @@ Things only a running session shows. Most were checked offscreen: the real popup
 - [x] Tiles: each size's smaller tile is now its default tile (Compact 100, Small 104, Cozy 108, Medium 112, Large 120), and its old default is the larger tile (108 to 128), picked with **Use larger tiles** (`largerTiles`, off by default) in place of Use smaller tiles (`smallerTiles`). No pixel sizes changed, only which is the default; a popup that never had smaller tiles ticked gets tiles 8 smaller until Use larger tiles is ticked. The default popup is now 696 × 562
 - [x] DIMENSIONS.md re-measured at the new defaults (6 × 4, Cozy, 108 tiles) on Plasma 6.8.0, offscreen with KDE's font settings: every value in it, all 10 size combinations, the squeezed 500 × 450 popup (now 4 columns, 34 at each side) and the Kirigami units
 - [x] Avatar: Protea's own button in place of Kirigami Addons' `AvatarButton`, whose circle has a 1.25px ring and a tint in a colour made from the name, with the initials in that colour, and nothing to turn them off. Without a profile picture it's the first letter of the name in the text colour on a circle filled like the search bar, with no outline; a picture is cropped to the circle as before (rounding needs hardware rendering, as with Kirigami Addons). Keyboard focus or pressing draws a 1px focus-colour ring around it (a filled circle behind, as Kirigami Addons draws it, would show through the see-through fill). Checked offscreen (letter, focus ring), in a real window (picture), and with the keyboard tests (Tab order)
+- [x] **User avatar** setting (`showAvatar`, on by default, so a popup that never had it set keeps its avatar): the first box under Buttons on the Utility Bar page, above System Settings and Power menu. Unticked, the avatar is left out of the utility bar; the buttons stay on the right and, while any button is shown, the bar stays 36 tall, so the popup's size doesn't change. Checked in a nested Plasma session: shown by default, hidden when unticked, and the box saves both ways
 
 ## Later (out of scope)
 

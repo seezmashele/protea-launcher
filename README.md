@@ -6,7 +6,7 @@ See [PLAN.md](PLAN.md) for the design and how it was built, and [DIMENSIONS.md](
 
 ## Requirements
 
-- KDE Plasma 6.8 (6.7 should also work)
+- KDE Plasma 6.8 or later
 
 ## Install
 
@@ -33,7 +33,7 @@ systemctl --user restart plasma-plasmashell
 **Uninstall:** switch back to the Application Launcher first (right-click Protea's panel icon, choose **Show Alternatives…** and pick **Application Launcher**). Then run:
 
 ```
-kpackagetool6 --type Plasma/Applet --remove dev.protea.launcher
+kpackagetool6 --type Plasma/Applet --remove org.proteadesktop.launcher
 ```
 
 ## Using it
@@ -58,7 +58,7 @@ kpackagetool6 --type Plasma/Applet --remove dev.protea.launcher
 
 Right-click any free space in the popup and choose **Configure Launcher**, the only item in that menu. Right-clicking Protea's panel icon has it too, next to **Show Alternatives…**. Those are the only two items there, so for the panel's own options (Add Widgets, Enter Edit Mode) right-click an empty spot on the panel. The popup sizes itself from the columns, rows and size settings; it can't be dragged to another size.
 
-The settings are on three pages: **General** (panel icon, appearance and the app grid), **Utility Bar** (its buttons, and a table of session actions with a column for each place they can go: a button of their own, the power menu, or both) and **Hidden Apps**.
+The settings are on three pages: **General** (panel icon, appearance and the app grid), **Utility Bar** (your avatar and its buttons, and a table of session actions with a column for each place they can go: a button of their own, the power menu, or both) and **Hidden Apps**.
 
 | Setting | Default |
 |---|---|
@@ -68,6 +68,7 @@ The settings are on three pages: **General** (panel icon, appearance and the app
 | Columns × rows | 6 × 4 (3 to 12 each); the popup sizes itself to fit |
 | Size | Cozy; also Compact, Small, Medium and Large. Each sets the icon size and its tile size |
 | Use larger tiles | Off; tick it for tiles 8 px larger at whichever size is chosen |
+| User avatar | On; untick it to leave the avatar off the utility bar. The buttons stay on the right |
 | Buttons on the utility bar | System Settings and the power menu; any session action can also get its own button |
 | Power menu items | Every session action the system supports |
 | Hidden apps | None. The **Hidden Apps** page lists them, each with **Unhide** |

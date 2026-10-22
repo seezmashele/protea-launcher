@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-2.0-or-later -->
 <kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
@@ -40,6 +41,10 @@
         <entry name="hiddenApps" type="StringList">
             <label>Apps left out of the app grid, by desktop file ID (e.g. "org.kde.dolphin.desktop"). They still show up in search results.</label>
             <default></default>
+        </entry>
+        <entry name="showAvatar" type="Bool">
+            <label>Whether the utility bar shows the user's avatar on its left, which opens their user settings.</label>
+            <default>true</default>
         </entry>
         <entry name="utilityButtons" type="StringList">
             <label>Buttons on the right of the utility bar: "settings" opens System Settings and "power" opens the power menu. Session actions (lock-screen, logout, save-session, switch-user, suspend, hibernate, reboot, shutdown) can also be listed to give them buttons of their own.</label>

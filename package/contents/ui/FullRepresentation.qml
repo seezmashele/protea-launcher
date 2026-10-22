@@ -319,6 +319,7 @@ T.Control {
             Layout.leftMargin: root.darkHeaderFooter ? -popupFrame.leftMargin : 0
             Layout.rightMargin: root.darkHeaderFooter ? -popupFrame.rightMargin : 0
 
+            showAvatar: Plasmoid.configuration.showAvatar
             buttons: Plasmoid.configuration.utilityButtons
             powerMenuActions: Plasmoid.configuration.powerMenuActions
 

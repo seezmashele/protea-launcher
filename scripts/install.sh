@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-2.0-or-later
 # Install Protea Launcher for the current user, or upgrade it if already installed.
 # An upgrade restarts plasmashell, because it keeps the old QML loaded until then.
 set -euo pipefail

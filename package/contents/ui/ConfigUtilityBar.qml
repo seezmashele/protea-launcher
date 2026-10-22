@@ -11,14 +11,16 @@ import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCM
 import org.kde.plasma.private.kicker as Kicker
 
-// The Utility Bar settings page: the buttons on the bar, and for each session action
-// whether it gets a button of its own, a place in the power menu, or both.
+// The Utility Bar settings page: the avatar and buttons on the bar, and for each session
+// action whether it gets a button of its own, a place in the power menu, or both.
 KCM.SimpleKCM {
     id: root
 
     // Plasma fills these from the widget's settings and saves them on Apply.
+    property alias cfg_showAvatar: showAvatarCheckBox.checked
     property var cfg_utilityButtons: []
     property var cfg_powerMenuActions: []
+    property bool cfg_showAvatarDefault
     property var cfg_utilityButtonsDefault
     property var cfg_powerMenuActionsDefault
 
@@ -70,6 +72,10 @@ KCM.SimpleKCM {
             Kirigami.FormData.labelAlignment: Qt.AlignTop
             spacing: 0
 
+            QQC2.CheckBox {
+                id: showAvatarCheckBox
+                text: i18nc("@option:check", "User avatar")
+            }
             ListCheckBox {
                 text: i18nc("@option:check", "System Settings")
                 itemId: "settings"

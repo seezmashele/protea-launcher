@@ -1,15 +1,23 @@
 {
     "KPackageStructure": "Plasma/Applet",
     "KPlugin": {
+        "Authors": [
+            {
+                "Email": "seez@example.com",
+                "Name": "Sizwe Mashele"
+            }
+        ],
+        "BugReportUrl": "https://github.com/seezmashele/protea-launcher/issues",
         "Category": "Application Launchers",
         "Description": "A simple grid-style app launcher",
         "Icon": "/contents/icons/protea.svg",
-        "Id": "dev.protea.launcher",
+        "Id": "org.proteadesktop.launcher",
         "License": "GPL-2.0+",
         "Name": "Protea Launcher",
-        "Version": "0.1.1"
+        "Version": "1.0.0",
+        "Website": "https://github.com/seezmashele/protea-launcher"
     },
-    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-API-Minimum-Version": "6.8",
     "X-Plasma-Provides": [
         "org.kde.plasma.launchermenu"
     ]

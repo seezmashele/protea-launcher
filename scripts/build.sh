@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-2.0-or-later
 # Build protea-launcher-<version>.plasmoid from package/: a zip with metadata.json at
 # its root, as "Install Widget From Local File…" and kpackagetool6 expect.
 set -euo pipefail

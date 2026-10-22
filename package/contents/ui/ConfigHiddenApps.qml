@@ -32,6 +32,8 @@ KCM.ScrollViewKCM {
     property var cfg_gridSizeDefault
     property var cfg_largerTiles
     property var cfg_largerTilesDefault
+    property var cfg_showAvatar
+    property var cfg_showAvatarDefault
     property var cfg_utilityButtons
     property var cfg_utilityButtonsDefault
     property var cfg_powerMenuActions

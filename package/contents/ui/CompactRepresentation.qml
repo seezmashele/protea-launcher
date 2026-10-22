@@ -150,11 +150,17 @@ Kirigami.Icon {
             onClicked: root.configureAction.trigger()
         }
 
-        // Plasma's own action, so the text and icon match Plasma's, and it shows only when
-        // another launcher is installed and widgets aren't locked.
+        // Plasma's own action, so the text matches Plasma's, and it shows only when another
+        // launcher is installed and widgets aren't locked. It's read rather than given as the
+        // item's action: an item copies the action's enabled state back onto it when created,
+        // while Plasma still has it hidden (so disabled), and that keeps it disabled for good.
         PlasmaExtras.MenuItem {
             id: alternativesItem
-            action: Plasmoid.internalAction("alternatives")
+            readonly property QtObject alternativesAction: Plasmoid.internalAction("alternatives")
+            text: alternativesAction?.text ?? ""
+            icon: "widget-alternatives"
+            visible: alternativesAction?.visible ?? false
+            onClicked: alternativesAction.trigger()
         }
     }
 
