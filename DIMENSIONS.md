@@ -2,7 +2,7 @@
 
 Every size and gap used in the launcher popup, measured from the running code.
 
-- **Measured:** 2026-10-22 on Plasma 6.8.0 (Qt 6.12, Frameworks 6.31): the real popup loaded offscreen with the installed Plasma modules and KDE's font settings. First measured 2026-10-04 on Plasma 6.7. The popup padding and section spacing went from 12 to 8 later on 2026-10-22, and the default size from Cozy to Medium when Compact and Cozy were removed; the values here are for 8 and Medium.
+- **Measured:** 2026-10-22 on Plasma 6.8.0 (Qt 6.12, Frameworks 6.31): the real popup loaded offscreen with the installed Plasma modules and KDE's font settings. First measured 2026-10-04 on Plasma 6.7. The popup padding and section spacing went from 12 to 8 later on 2026-10-22, the default size from Cozy to Medium when Compact and Cozy were removed, every size's icon and tile 4 smaller after that, and then four sizes 6 apart (Compact 36 in 100 up to Large 54 in 118; Medium is 48 in 112 again); the values here are for 8 and Medium.
 - **Settings:** the defaults: 6 columns × 4 rows, the **Medium** size (48px icons in 112px tiles), Round search bar corners, no dark header and footer.
 - **Font:** Noto Sans 10pt (line height 17.7px). Label heights change with the system font. The Kirigami spacing units don't: they're fixed values.
 - **Units:** logical pixels, before display scaling.
@@ -151,19 +151,21 @@ All fixed values in Kirigami 6; Plasma only changes the animation durations.
 
 ## App grid sizes
 
-The app grid's **Size** setting picks one of three sizes, each an icon size and a tile size. Every size leaves room for the icon and a two-line name: a tile needs 8 + icon + 4 + 36 (two lines) + 8, and the tile is 8 more than that.
+The app grid's **Size** setting picks one of four sizes, each 6 larger than the one before in both icon and tile, each an icon size and a tile size. Every size leaves room for the icon and a two-line name: a tile needs 8 + icon + 4 + 36 (two lines) + 8, and the tile is 8 more than that.
 
 | Size | Icon | Tile | Tile needs |
 |---|---:|---:|---:|
-| Small | 40 | 104 | 96 |
+| Compact | 36 | 100 | 92 |
+| Small | 42 | 106 | 98 |
 | Medium (default) | 48 | 112 | 104 |
-| Large | 56 | 120 | 112 |
+| Large | 54 | 118 | 110 |
 
 | Size | Label width | Icon from top / label from bottom | Popup content at 6 × 4 |
 |---|---:|---|---:|
-| Small | 88 | 12 / 12 | 672 × 530 |
+| Compact | 84 | 12 / 12 | 648 × 514 |
+| Small | 90 | 12 / 12 | 684 × 538 |
 | Medium (default) | 96 | 13 / 11 | 720 × 562 |
-| Large | 104 | 13 / 11 | 768 × 594 |
+| Large | 102 | 13 / 11 | 756 × 586 |
 
 - Width = columns × tile + 48: the 24 gap at each side of the grid.
 - Height = rows × tile + 114: 54 above the tiles (8 + 30 + 8 + 8) and 60 below them (8 + 8 + 36 + 8). 8 less with the dark header and footer.

@@ -48,6 +48,7 @@ KCM.SimpleKCM {
 
     // App grid sizes in order; the values are the popup's gridSizes keys.
     readonly property var gridSizeOptions: [
+        { text: i18nc("@item:inlistbox app grid size", "Compact"), value: "compact" },
         { text: i18nc("@item:inlistbox app grid size", "Small"), value: "small" },
         { text: i18nc("@item:inlistbox app grid size", "Medium"), value: "medium" },
         { text: i18nc("@item:inlistbox app grid size", "Large"), value: "large" },

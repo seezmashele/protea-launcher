@@ -93,9 +93,10 @@ T.Control {
 
     // Icon size and tile size for each app grid size (the gridSize setting).
     readonly property var gridSizes: ({
-        small: { iconSize: 40, tileSize: 104 },
+        compact: { iconSize: 36, tileSize: 100 },
+        small: { iconSize: 42, tileSize: 106 },
         medium: { iconSize: 48, tileSize: 112 },
-        large: { iconSize: 56, tileSize: 120 },
+        large: { iconSize: 54, tileSize: 118 },
     })
     readonly property var gridSize: gridSizes[Plasmoid.configuration.gridSize] ?? gridSizes.medium
 

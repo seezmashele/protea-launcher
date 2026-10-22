@@ -31,7 +31,7 @@
             <max>12</max>
         </entry>
         <entry name="gridSize" type="String">
-            <label>Size of the app grid: "small" (40px icons in 104px tiles), "medium" (48px in 112px) or "large" (56px in 120px).</label>
+            <label>Size of the app grid: "compact" (36px icons in 100px tiles), "small" (42px in 106px), "medium" (48px in 112px) or "large" (54px in 118px).</label>
             <default>medium</default>
         </entry>
         <entry name="hiddenApps" type="StringList">
