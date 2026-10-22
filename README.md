@@ -2,6 +2,10 @@
 
 A simple grid-style app launcher for KDE Plasma 6. It replaces the default Application Launcher with a popup made of three parts: a search bar, a grid of apps, and a utility bar with your avatar, System Settings and a power menu.
 
+![Protea Launcher's popup: a search bar, a grid of apps, and a utility bar with the avatar, System Settings and power buttons](screenshots/popup.png)
+
+The screenshots show the Protea Dark Plasma theme. The launcher follows whichever theme you use.
+
 See [PLAN.md](PLAN.md) for the design and how it was built, and [DIMENSIONS.md](DIMENSIONS.md) for every size and gap in the popup.
 
 ## Requirements

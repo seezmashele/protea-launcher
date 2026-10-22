@@ -10,7 +10,7 @@
         "BugReportUrl": "https://github.com/seezmashele/protea-launcher/issues",
         "Category": "Application Launchers",
         "Description": "A simple grid-style app launcher",
-        "Icon": "/contents/icons/protea.svg",
+        "Icon": "/icons/protea.svg",
         "Id": "org.proteadesktop.launcher",
         "License": "GPL-2.0+",
         "Name": "Protea Launcher",

@@ -55,7 +55,7 @@ Still to try by hand, on the real desktop:
 
 - [ ] Move your own panel to the top, left and right, and make it floating
 - [ ] Turn display scaling up in System Settings and open the popup
-- [ ] A new user account, installing the `.plasmoid` through **Install Widget From Local File…**
+- [ ] A new user account, installing the `.plasmoid` through **Install Widget From Local File…**: untested for now, to be done later. The test session's empty config covered most of it: a fresh install from the `.plasmoid`, with default settings on stock Breeze
 
 Fixed in this phase:
 
@@ -67,12 +67,14 @@ Fixed in this phase:
 
 Taken after Phase 3, so they show the launcher as it will ship. Keep them outside `package/` (a `screenshots/` folder, say), so they aren't installed with the widget.
 
-- [ ] The popup with the default settings
-- [ ] The popup with a search under way
-- [ ] The settings pages: General, Utility Bar, Hidden Apps
-- [ ] A screenshot near the top of the README
-- [ ] A preview picture for Plasma's Alternative Widgets list, where every other launcher has one and Protea shows a blank square
-- [ ] A short description for the store page: what it is, Plasma 6.8 or later, how to put it in place of the Application Launcher (right-click → Show Alternatives…), and the licence (GPL-2.0-or-later)
+- [x] The popup with the default settings: `screenshots/popup.png`
+- [x] The popup with a search under way: `screenshots/search.png` ("brows", finding Google Chrome and three System Settings pages)
+- [x] The settings pages: `screenshots/settings-general.png`, `settings-utility-bar.png`, `settings-hidden-apps.png`
+- [x] A screenshot near the top of the README: `popup.png`, with a line saying the screenshots show Protea Dark
+- [x] The blank square in Plasma's Alternative Widgets list. It wasn't a missing preview picture: that list, and Add Widgets, show each widget's icon, and Protea's didn't load. `metadata.json` gave it as `/contents/icons/protea.svg`, but Plasma looks up an icon starting with `/` inside the package's `contents/` folder, so it found nothing. It's `/icons/protea.svg` now, and shows in both. The panel icon was never affected: Protea sets that itself
+- [x] A short description for the store page: in [STORE.md](STORE.md), with the store's other fields and the order to upload the screenshots in
+
+How the screenshots were taken (2026-10-22): in the same kind of nested Plasma 6.8 session as Phase 3, on a 1920 × 1080 screen at 100%, with the Protea Dark theme copied from the installed files (its Teal accent, Plasma Style, Breeze Dark icons, and the Protea app style and window decoration), Plasma's default wallpaper, and a bottom panel. The grid hides the same apps as your own panel. The avatar shows its letter rather than a picture: the test copy of the launcher was changed for that, not the one in `package/`. The popup shots are cropped to the popup and the panel's corner; the settings shots to the window with 32 px around it.
 
 **Done when:** the screenshots and the store description are ready to upload.
 
