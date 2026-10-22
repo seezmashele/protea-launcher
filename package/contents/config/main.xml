@@ -31,11 +31,11 @@
             <max>12</max>
         </entry>
         <entry name="gridSize" type="String">
-            <label>Size of the app grid: "compact" (36px icons in 108px tiles), "small" (40px in 112px), "cozy" (44px in 116px), "medium" (48px in 120px) or "large" (56px in 128px).</label>
-            <default>cozy</default>
+            <label>Size of the app grid: "small" (40px icons in 104px tiles), "medium" (48px in 112px) or "large" (56px in 120px).</label>
+            <default>medium</default>
         </entry>
-        <entry name="largerTiles" type="Bool">
-            <label>Whether to use tiles 8px larger than the size's usual ones: 108px for compact, 112px for small, 116px for cozy, 120px for medium and 128px for large.</label>
+        <entry name="spaciousLayout" type="Bool">
+            <label>Whether to use a roomier layout: tiles 8px larger than the size's usual ones (112px for small, 120px for medium and 128px for large), and 12px around the header and footer (the search bar and utility bar) instead of 8.</label>
             <default>false</default>
         </entry>
         <entry name="hiddenApps" type="StringList">

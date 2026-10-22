@@ -70,8 +70,8 @@ The settings are on three pages: **General** (panel icon, appearance and the app
 | Header and footer background | Off; tick it for dark bands (black at 25% opacity) behind the search bar at the top and the utility bar at the bottom, running to the popup's edges |
 | Search bar corners | Round (fully rounded ends, filled with the text colour at 10%); or Default, the theme's own search field |
 | Columns × rows | 6 × 4 (3 to 12 each); the popup sizes itself to fit |
-| Size | Cozy; also Compact, Small, Medium and Large. Each sets the icon size and its tile size |
-| Use larger tiles | Off; tick it for tiles 8 px larger at whichever size is chosen |
+| Size | Medium (48 px icons); also Small (40 px) and Large (56 px). Each sets the icon size and its tile size |
+| Spacious layout | Off; tick it for tiles 8 px larger at whichever size is chosen, and 12 px around the search bar and utility bar instead of 8. At 6 × 4 the popup gets 48 px wider and taller |
 | Utility bar | Shown; untick it for a popup without the bar at the bottom, 48 px shorter. The rest of the Utility Bar page is greyed out while it's hidden |
 | User avatar | On; untick it to leave the avatar off the utility bar. The buttons stay on the right |
 | Buttons on the utility bar | System Settings and the power menu; any session action can also get its own button |
