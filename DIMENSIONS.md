@@ -3,7 +3,7 @@
 Every size and gap used in the launcher popup, measured from the running code.
 
 - **Measured:** 2026-10-22 on Plasma 6.8.0 (Qt 6.12, Frameworks 6.31): the real popup loaded offscreen with the installed Plasma modules and KDE's font settings. First measured 2026-10-04 on Plasma 6.7. The popup padding and section spacing went from 12 to 8 later on 2026-10-22, and the default size from Cozy to Medium when Compact and Cozy were removed; the values here are for 8 and Medium.
-- **Settings:** the defaults: 6 columns × 4 rows, the **Medium** size (48px icons in 112px tiles), Round search bar corners, no dark header and footer, not the spacious layout.
+- **Settings:** the defaults: 6 columns × 4 rows, the **Medium** size (48px icons in 112px tiles), Round search bar corners, no dark header and footer.
 - **Font:** Noto Sans 10pt (line height 17.7px). Label heights change with the system font. The Kirigami spacing units don't: they're fixed values.
 - **Units:** logical pixels, before display scaling.
 - **Not included:** the frame Plasma draws around the popup: 4px on every side with the Breeze theme. The window on screen is that much larger than the content sizes here. In a panel that isn't floating, Plasma also adds 1px between the popup and the panel (to the height for a top or bottom panel, the width for a side panel) for the separator line it draws there, and that pixel ends up in the app grid section: 465 tall instead of 464 under a bottom panel.
@@ -11,8 +11,6 @@ Every size and gap used in the launcher popup, measured from the running code.
 ## At a glance
 
 Content area: **720 × 562px** (720 × 554 with the dark header and footer). The popup has **8px padding** on every side and its three sections (search bar, app grid, utility bar) are **8px apart**, so the search bar and utility bar have 8px on all sides. The app grid spans the popup's full width and has one **24px gap** at each side of the tiles, with the scrollbar inside the right one, so the tiles are centred whether or not the scrollbar shows. Above the first row and below the last there's **8px** of empty space that scrolls with the tiles.
-
-With **Spacious layout** ticked (under Size) the padding and section spacing are **12px** instead, `largeSpacing × 1.5`, and the tiles are 8 larger (see [App grid sizes](#app-grid-sizes)). At 6 × 4 Medium the popup is 768 × 610 (602 with the dark header and footer; 562 and 558 without the utility bar), and each bar is 744 wide (752 in the dark bands).
 
 ### Top to bottom
 
@@ -62,8 +60,8 @@ It only ends up smaller if Plasma has to shrink it to fit the screen (Plasma cap
 |---|---|---|
 | Content size | 720 × 562 (720 × 554 with the dark header and footer) | Worked out by the layout from the content: columns × rows of tiles, the padding around them, and the bars |
 | Size limits | Minimum = maximum = content size, for both width and height | `Layout.minimum…`/`maximum…` bound to the implicit size; Plasma takes the popup's size limits from them, so it can't be dragged to another size |
-| Padding (all four sides) | 8 (4 at the top and bottom with the dark header and footer); 12 (8) in the spacious layout | `padding` = `sectionGap` = `Kirigami.Units.largeSpacing`, × 1.5 with the `spaciousLayout` setting; the app grid has `Layout.leftMargin` and `Layout.rightMargin` of −8 to span the full width, and its own gap at each side instead |
-| Section spacing | 8 (12 in the spacious layout) | `spacing` = `sectionGap` |
+| Padding (all four sides) | 8 (4 at the top and bottom with the dark header and footer) | `padding` = `sectionGap` = `Kirigami.Units.largeSpacing`; the app grid has `Layout.leftMargin` and `Layout.rightMargin` of −8 to span the full width, and its own gap at each side instead |
+| Section spacing | 8 | `spacing` = `sectionGap` |
 
 ## Search bar
 
@@ -84,7 +82,7 @@ It only ends up smaller if Plasma has to shrink it to fit the screen (Plasma cap
 | Position | x 0, y 46 | Popup padding, search bar and section spacing above it |
 | Gap at each side | 24 between the section's edge and the tiles, the same on both sides (`horizontalPadding`, `Kirigami.Units.largeSpacing × 3`). It's the grid view's own margin, as in Kickoff, so the wheel and dragging scroll the grid from the gaps too | The scrollbar sits inside the right gap, so it doesn't change where the tiles are |
 | Scrolling space | 8 of empty space above the first row and below the last, which scrolls with the tiles, so they can move through it (`scrollPadding`, the grid's header and footer; `Kirigami.Units.largeSpacing`) | Arrowing into the first or last row scrolls all the way to the top or bottom, so the space shows |
-| Cell | 112 × 112, square | The size's tile (or larger tile); never smaller than a tile's icon and two-line label need |
+| Cell | 112 × 112, square | The size's tile; never smaller than a tile's icon and two-line label need |
 | Columns × rows | 6 × 4 | `columns`, `rows` settings |
 | Tile area | 672 × 448 at x 24, y 54 (at the top of the list) | columns × cell, rows × cell |
 | Scrollbar | 18-wide slot at the popup's right edge, inside the 24 gap, the full height of the section, 6 clear of the tiles; the visible handle is 6 wide, with 6 of the slot's own padding on each side, so it sits 6 from the popup's edge and 12 from the last column of tiles. The 1px separator Breeze asks Plasma to draw along the slot's inner edge is hidden | Plasma scrollbar style; it takes no space of its own |
@@ -132,7 +130,6 @@ All fixed values in Kirigami 6; Plasma only changes the animation durations.
 | Unit | Value | Used for |
 |---|---:|---|
 | `smallSpacing` | 4 | Icon-to-label gap in tiles |
-| `largeSpacing × 1.5` | 12 | Popup padding and section spacing in the spacious layout |
 | `largeSpacing` | 8 | Popup padding and section spacing (`sectionGap`), the scrolling space above and below the tiles, tile padding, gap between utility buttons |
 | `largeSpacing × 3` | 24 | The gap at each side of the app grid |
 | `gridUnit` | 18 | Utility button size (× 2); "No matches" message inset (× 4) |
@@ -154,25 +151,22 @@ All fixed values in Kirigami 6; Plasma only changes the animation durations.
 
 ## App grid sizes
 
-The app grid's **Size** setting picks one of three sizes, each an icon size and a tile size. **Spacious layout** swaps in a tile 8 larger for whichever size is chosen, and puts 12 around the header and footer instead of 8. Every combination leaves room for the icon and a two-line name: a tile needs 8 + icon + 4 + 36 (two lines) + 8, and the tile is 8 more than that (16 more with the spacious layout's larger tile).
+The app grid's **Size** setting picks one of three sizes, each an icon size and a tile size. Every size leaves room for the icon and a two-line name: a tile needs 8 + icon + 4 + 36 (two lines) + 8, and the tile is 8 more than that.
 
-| Size | Icon | Tile | Larger tile | Tile needs |
-|---|---:|---:|---:|---:|
-| Small | 40 | 104 | 112 | 96 |
-| Medium (default) | 48 | 112 | 120 | 104 |
-| Large | 56 | 120 | 128 | 112 |
+| Size | Icon | Tile | Tile needs |
+|---|---:|---:|---:|
+| Small | 40 | 104 | 96 |
+| Medium (default) | 48 | 112 | 104 |
+| Large | 56 | 120 | 112 |
 
 | Size | Label width | Icon from top / label from bottom | Popup content at 6 × 4 |
 |---|---:|---|---:|
 | Small | 88 | 12 / 12 | 672 × 530 |
-| Small, spacious | 96 | 16 / 16 | 720 × 578 |
 | Medium (default) | 96 | 13 / 11 | 720 × 562 |
-| Medium, spacious | 104 | 17 / 15 | 768 × 610 |
 | Large | 104 | 13 / 11 | 768 × 594 |
-| Large, spacious | 112 | 18 / 14 | 816 × 642 |
 
 - Width = columns × tile + 48: the 24 gap at each side of the grid.
-- Height = rows × tile + 114: 54 above the tiles (8 + 30 + 8 + 8) and 60 below them (8 + 8 + 36 + 8). 8 less with the dark header and footer. In the spacious layout it's rows × tile + 130, as the four gaps of 8 there are 12.
+- Height = rows × tile + 114: 54 above the tiles (8 + 30 + 8 + 8) and 60 below them (8 + 8 + 36 + 8). 8 less with the dark header and footer.
 
 ## Where it's set
 
@@ -184,4 +178,4 @@ The app grid's **Size** setting picks one of three sizes, each an icon size and 
 | Round search bar corners | [search/SearchBar.qml](package/contents/ui/search/SearchBar.qml) |
 | Avatar size, gap between buttons, button icon names, power menu | [utility/UtilityBar.qml](package/contents/ui/utility/UtilityBar.qml) |
 | Button size, button icon size | [utility/UtilityButton.qml](package/contents/ui/utility/UtilityButton.qml) |
-| Defaults for columns, rows, size, spacious layout, dark header and footer, search bar corners | [config/main.xml](package/contents/config/main.xml) |
+| Defaults for columns, rows, size, dark header and footer, search bar corners | [config/main.xml](package/contents/config/main.xml) |

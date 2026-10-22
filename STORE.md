@@ -20,7 +20,7 @@ Protea replaces the Application Launcher with a compact popup in three parts: a 
 
 Features:
 - Start typing to search apps and System Settings pages; Enter launches the first result
-- Choose the grid's columns and rows, one of three icon sizes, and a more spacious layout
+- Choose the grid's columns and rows, and one of three icon sizes
 - Full keyboard control: arrows, Home/End, Page Up/Down, Tab, Esc
 - Right-click an app for its own actions (such as New Private Window), Add to Desktop, Pin to Task Manager, Edit Application and Hide
 - Hide apps you never use; they still show up when you search

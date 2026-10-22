@@ -75,12 +75,9 @@ T.Control {
     implicitWidth: implicitContentWidth + leftPadding + rightPadding
     implicitHeight: implicitContentHeight + topPadding + bottomPadding
 
-    // Larger tiles, and more space around the header and footer.
-    readonly property bool spacious: Plasmoid.configuration.spaciousLayout
-
     // The same gap between the popup's edges and the sections, and between the sections:
-    // the space around the header and footer. Half as much again in the spacious layout.
-    readonly property real sectionGap: spacious ? Kirigami.Units.largeSpacing * 1.5 : Kirigami.Units.largeSpacing
+    // the space around the header and footer.
+    readonly property real sectionGap: Kirigami.Units.largeSpacing
 
     // Whether the header and footer (the search bar and utility bar) sit in dark bands.
     readonly property bool darkHeaderFooter: Plasmoid.configuration.headerFooterDarkBackground
@@ -94,12 +91,11 @@ T.Control {
     // Apps left out of the grid (they still show up in search), by desktop file ID.
     readonly property list<string> hiddenApps: Plasmoid.configuration.hiddenApps
 
-    // Icon size, tile size and larger tile size for each app grid size (the gridSize
-    // setting). The spacious layout picks the larger tile.
+    // Icon size and tile size for each app grid size (the gridSize setting).
     readonly property var gridSizes: ({
-        small: { iconSize: 40, tileSize: 104, largerTileSize: 112 },
-        medium: { iconSize: 48, tileSize: 112, largerTileSize: 120 },
-        large: { iconSize: 56, tileSize: 120, largerTileSize: 128 },
+        small: { iconSize: 40, tileSize: 104 },
+        medium: { iconSize: 48, tileSize: 112 },
+        large: { iconSize: 56, tileSize: 120 },
     })
     readonly property var gridSize: gridSizes[Plasmoid.configuration.gridSize] ?? gridSizes.medium
 
@@ -307,7 +303,7 @@ T.Control {
             columns: Plasmoid.configuration.columns
             rows: Plasmoid.configuration.rows
             iconSize: root.gridSize.iconSize
-            tileSize: root.spacious ? root.gridSize.largerTileSize : root.gridSize.tileSize
+            tileSize: root.gridSize.tileSize
             // Enter in the search box launches the selected tile too.
             highlightActive: activeFocus || searchBar.activeFocus
             hiddenApps: root.hiddenApps

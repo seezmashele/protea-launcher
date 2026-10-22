@@ -23,7 +23,6 @@ KCM.SimpleKCM {
     property alias cfg_columns: columns.value
     property alias cfg_rows: rows.value
     property string cfg_gridSize
-    property alias cfg_spaciousLayout: spaciousLayout.checked
 
     // Plasma also passes each setting's default; these give it somewhere to go.
     property string cfg_iconDefault
@@ -32,7 +31,6 @@ KCM.SimpleKCM {
     property int cfg_columnsDefault
     property int cfg_rowsDefault
     property string cfg_gridSizeDefault
-    property bool cfg_spaciousLayoutDefault
 
     // Set on the Utility Bar and Hidden Apps pages; Plasma hands every setting to every page.
     property var cfg_showUtilityBar
@@ -169,18 +167,6 @@ KCM.SimpleKCM {
             valueRole: "value"
             currentIndex: root.gridSizeOptions.findIndex(option => option.value === root.cfg_gridSize)
             onActivated: root.cfg_gridSize = currentValue
-        }
-
-        // Tiles 8px larger, and 12px around the search bar and utility bar instead of 8.
-        QQC2.CheckBox {
-            id: spaciousLayout
-            text: i18nc("@option:check", "Spacious layout")
-        }
-        QQC2.Label {
-            Layout.maximumWidth: Kirigami.Units.gridUnit * 16
-            text: i18nc("@info", "Larger tiles, and more space around the search bar and utility bar.")
-            font: Kirigami.Theme.smallFont
-            wrapMode: Text.Wrap
         }
     }
 }
